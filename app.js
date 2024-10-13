@@ -3,8 +3,9 @@ const app = express()
 const mongoose = require('mongoose')
 var ejsMate = require('ejs-mate')
 const path = require('path')
-const Project = require('./schema/projectSchema')
-const Bill = require('./schema/billSchema')
+const Project = require('./model/projectSchema')
+const Bill = require('./model/billSchema')
+const billroutes = require('./routes/bill');
 
 mongoose.connect('mongodb://localhost:27017/projectDB').
     then(() => {
@@ -27,8 +28,10 @@ app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'./views'))
 app.use(express.static(path.join(__dirname,'./public')))
 
+app.use('/project/:id/bill',billroutes)
+
 app.get('/',(req,res)=>{
-    res.render('dashboard')
+    res.render('login')
 })
 
 app.get('/login',(req,res)=>{
@@ -42,10 +45,10 @@ app.get('/dashboard',(req,res)=>{
 app.get('/projects', async(req, res) => {
   const projects = await Project.find({})
   res.render('listofprojects', { projects });
-  console.log('Projects',projects)
+  // console.log('Projects',projects)
 });
 
-app.get('/projectdetails/:id', async (req, res) => {
+app.get('/project/:id', async (req, res) => {
   const projectId = req.params.id; 
   try {
     const project = await Project.findById(projectId); 
@@ -54,29 +57,20 @@ app.get('/projectdetails/:id', async (req, res) => {
       return res.status(404).send('Project not found'); 
     }
 
-    const projectLinks = [
-      { name: "Drawing", url: "https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/view?usp=sharing" },
-      { name: "Tender", url: "https://drive.google.com/file/d/1b5tlf2VyGhGH2Fb8K7yxRBrFVkJ87tBf/view?usp=sharing" },
-      { name: "Bill", url: "https://example.com/bill" },
-      { name: "Progress", url: "https://example.com/progress" },
-      { name: "Extra Stuff", url: "https://example.com/extra-stuff" },
-    ];
-
-    res.render('project_details', { project, projectLinks });
+    res.render('project_details', {project});
   } catch (error) {
     console.error(error); 
     res.status(500).send('Error fetching project details'); 
   }
 });
 
+// app.get('/billing',(req,res)=>{
+//   res.render('billing')
+// })
+
+
 app.get('/drawings', (req, res) => {
-  const drawings = [
-    { name: 'Drawing Name 1', imageUrl: 'drawing1.jpg' },
-    { name: 'Drawing Name 2', imageUrl: 'drawing2.jpg' },
-    { name: 'Drawing Name 3', imageUrl: 'drawing3.jpg' },
-    // ...more drawings
-  ];
-  res.render('drawings', { drawings });
+  res.render('drawings');
 });
 
 
