@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginPage from './components/loginpage';
-import DashboardPage from './components/dashboard';
-import Projects from 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/components/projects.js';
-import ProjectDetails from 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/components/projectdetails.js';
-import Billing from './components/billing';
-import projectData from 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/components/data.js'; // Importing the project data
+import LoginPage from './components/loginpage.js';
+import DashboardPage from './components/dashboard.js';
+import Projects from './components/projects.js';
+import ProjectDetails from './components/projectdetails.js';
+import Billing from './components/billing.js';
+import projectData from './components/data.js'; // Importing the project data
 
 function App() {
   // Use the first project from projectData

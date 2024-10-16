@@ -1,5 +1,5 @@
 import React from 'react';
-import 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/styles/navbar.css';
+import '../styles/navbar.css';
 
 const Navbar = () => {
   return (

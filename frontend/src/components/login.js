@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/styles/login.css';
+import '../styles/login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');

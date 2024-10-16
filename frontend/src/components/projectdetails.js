@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/components/navbar.js'; // Importing Navbar component
-import Footer from 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/components/footer.js'; // Importing Footer component
-import 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/styles/projectdetails.css'; // Importing the CSS file for the main content
+import Navbar from './navbar.js'; // Importing Navbar component
+import Footer from './footer.js'; // Importing  Footer component
+import '../styles/projectdetails.css'; // Importing the CSS file for the main content
 
 const ProjectDetails = ({ project }) => {
     return (

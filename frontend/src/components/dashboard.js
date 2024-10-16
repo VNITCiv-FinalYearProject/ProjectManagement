@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar2 from 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/components/navbar2.js'; // Adjust this path as necessary
-import 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/styles/dashboard.css'; // Adjust this path as necessary
-import Footer from 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/components/footer.js';
+import Navbar2 from './navbar2.js'; // Adjust this path as necessary
+import '../styles/dashboard.css'; // Adjust this path as necessary
+import Footer from './footer.js';
 const Dashboard = () => {
     return (
         <>

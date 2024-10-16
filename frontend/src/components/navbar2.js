@@ -1,7 +1,7 @@
 // src/components/Navbar2.js
 
 import React from 'react';
-import 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/styles/navbar2.css'; // Import the CSS for the Navbar
+import '../styles/navbar2.css'; // Import the CSS for the Navbar
 
 const Navbar2 = () => {
     return (

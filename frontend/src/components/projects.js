@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/styles/projects.css'; // Use relative path for CSS import
-import data from 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/components/data.js'; // Adjust to the correct relative path to data.js
+import '../styles/projects.css'; // Use relative path for CSS import
+import data from './data.js'; // Adjust to the correct relative path to data.js
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Projects = () => {
             <div
               className="project-card"
               key={project.title} 
-              onClick={() => navigate(`C:/coding/fyp the champ/my_project/fypproject/frontend/src/styles/projects/${project.title.replace(/\s+/g, '-')}`)} 
+              onClick={() => navigate(`frontend/src/styles/projects/${project.title.replace(/\s+/g, '-')}`)} 
             >
               <div className="project-name">{project.title}</div>
               <div className="project-info">Supervisor: {project.supervisor}</div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/styles/billing.css';
+import '../styles/billing.css';
 
 const Billing = () => {
   const [items, setItems] = useState([]);

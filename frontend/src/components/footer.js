@@ -1,6 +1,6 @@
 import React from 'react';
 // Use relative import for Footer.js
-import 'C:/coding/fyp the champ/my_project/fypproject/frontend/src/styles/footer.css';  // Assuming you have a CSS file for footer styling
+import '../styles/footer.css';  // Assuming you have a CSS file for footer styling
 
 const Footer = () => {
   return (
