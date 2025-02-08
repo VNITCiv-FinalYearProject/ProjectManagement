@@ -1,0 +1,180 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f8f9fa;
+  line-height: 1.6;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #56ab2f;
+  text-decoration: none;
+}
+
+.nav-links a {
+  margin-left: 2rem;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #56ab2f;
+}
+
+/* Hero Section */
+.hero.login-hero {
+  padding: 120px 0 60px;
+  background: linear-gradient(135deg, #f8fff9, #e6f7e0);
+}
+
+.auth-card {
+  background: white;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.auth-header h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+.social-login {
+  margin-bottom: 30px;
+}
+
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  background: #56ab2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.google-btn:hover {
+  background: #4a9428;
+}
+
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 40px;
+  border: 2px solid #eee;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.form-group input:focus {
+  border-color: #56ab2f;
+  outline: none;
+}
+
+.icon {
+  position: absolute;
+  left: 15px;
+  top: 38px;
+  color: #666;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 38px;
+  cursor: pointer;
+  color: #666;
+}
+
+.btn.primary {
+  width: 100%;
+  padding: 14px;
+  background: #56ab2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn.primary:hover {
+  background: #4a9428;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #666;
+}
+
+.auth-footer a {
+  color: #56ab2f;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .auth-card {
+      padding: 25px;
+  }
+  
+  .hero.login-hero {
+      padding: 100px 20px 40px;
+  }
+  
+  .nav-links {
+      display: none;
+  }
+}
