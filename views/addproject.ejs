@@ -23,10 +23,12 @@
             <li><a href="/dashboard">Home</a></li>
             <li><a href="/project">Projects</a></li>
         </ul>
-                <!-- Display user role -->
-                <div class="user-role">
-                    Logged in as: <strong><%= (user && user.role) ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "Guest" %></strong>
-                </div>
+            <!-- Display user role -->
+            <div class="user-role">
+                Logged in as: <strong><%= (user && user.role) ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "Guest" %></strong>
+            </div>
+            <li><a href="/logout">Logout</a></li>
+
     </nav>
 
     <!-- Main Content -->

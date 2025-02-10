@@ -37,12 +37,13 @@ router.get('/', async (req, res) => {
         }
 
         console.log(`Displaying progress page for project id: ${projectId}`);
-        res.render('progress', {project,percent});
+        res.render('listview_progress', {project,percent});
     } catch (error) {
         console.error(error);
         res.status(500).send('Error fetching project');
     }
 });
+
 
 router.get('/:progressId/viewprogress', async (req, res) => {
     const { progressId } = req.params;
@@ -130,6 +131,7 @@ router.put('/:progressId/editprogress', upload.array('image',3), async (req, res
     }
 });
 
+
 router.get('/addprogress', async (req, res) => {
     const projectId = req.params.id;
 
@@ -188,9 +190,6 @@ router.post('/addprogress', upload.array('image', 3), async (req, res) => {
         res.status(500).send('Error adding progress');
     }
 });
-
-
-
 
 module.exports = router;
 

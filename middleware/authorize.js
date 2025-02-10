@@ -17,9 +17,9 @@ const authorize = (allowedRoles = []) => {
         console.log("User not found");
         return res.status(401).json({ message: "Unauthorized" });
       }
-      console.log("User role:", user.role, "Allowed roles:", allowedRoles);
+      // console.log("User role:", user.role, "Allowed roles:", allowedRoles);
       if (!allowedRoles.includes(user.role) || !user.approved) {
-        console.log("User not authorized or not approved");
+        // console.log("User not authorized or not approved");
         return res.status(403).json({ message: "Forbidden" });
       }
       req.user = user;
