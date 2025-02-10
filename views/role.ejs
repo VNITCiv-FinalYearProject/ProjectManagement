@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Role Management</title>
+  <link rel="stylesheet" href="/css/role.css" />
+</head>
+<body>
+  <header>
+    <h1>User Approvals</h1>
+  </header>
+  <main>
+    <div class="user-list">
+      <% if (users && users.length) { %>
+        <% users.forEach(function(user) { %>
+          <div class="user-card">
+            <div class="user-info">
+              <p class="name"><strong>Name:</strong> <%= user.name %></p>
+              <p class="email"><strong>Email:</strong> <%= user.email %></p>
+              <p class="role"><strong>Role:</strong> <%= user.role %></p>
+            </div>
+            <div class="toggle-container">
+              <label class="switch">
+                <!-- Checkbox pre-checked if user is already approved -->
+                <input type="checkbox" data-userid="<%= user._id %>" class="approval-toggle" <%= user.approved ? "checked" : "" %> >
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <p>No users to display.</p>
+      <% } %>
+    </div>
+  </main>
+  
+  <script>
+    // Listen for toggle switch changes
+    document.querySelectorAll('.approval-toggle').forEach(function(toggle) {
+      toggle.addEventListener('change', function() {
+        const userId = this.getAttribute('data-userid');
+        const approved = this.checked; // true if approved, false if rejected
+
+        // Determine the API endpoint based on the approval state
+        const url = approved ? `/admin/approve-user/${userId}` : `/admin/reject-user/${userId}`;
+        
+        // Send a POST request to update the user’s approval status
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ approved })
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert(data.message);
+        })
+        .catch(error => {
+          console.error("Error updating user approval:", error);
+          alert("There was an error updating the user status.");
+        });
+      });
+    });
+  </script>
+</body>
+</html>

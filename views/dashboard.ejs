@@ -9,20 +9,24 @@
   <body>
     <nav>
       <ul>
-        <li><a href="#home">Home</a></li>
+        <li><a href="/dashboard">Home</a></li>
         <li><a href="/project">Projects</a></li>
         <li><a href="#tasks">Notifications</a></li>
         <li><a href="#reports">About</a></li>
+        <% if (user && user.role === "admin") { %>
+          <li><a href="/admin/roles">Roles</a></li>
+        <% } %>
       </ul>
+      
+      <div class="user-role">
+        Logged in as: <strong><%= (user && user.role) ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : "Guest" %></strong>
+      </div>
     </nav>
 
     <main>
       <h1>Welcome to the Project Management Dashboard</h1>
-      <p>
-        Stay updated with your latest projects, tasks, and reports at a glance.
-      </p>
+      <p>Stay updated with your latest projects, tasks, and reports at a glance.</p>
 
-      <!-- Quick Stats Section -->
       <section class="quick-stats">
         <h2>Quick Stats</h2>
         <div class="stats-grid">
@@ -45,31 +49,18 @@
         </div>
       </section>
 
-      <!-- Recent Activity Section -->
       <section class="recent-activity">
         <h2>Recent Activity</h2>
         <ul>
-          <li>
-            Project <strong>PG CRC</strong> updated by <strong>ABC</strong>.
-          </li>
-          <li>
-            Task <strong>Swimming Pool</strong> completed by
-            <strong>XYZ</strong>.
-          </li>
-          <li>
-            Deadline for <strong>Tender Release</strong> approaching in 2 days.
-          </li>
+          <li>Project <strong>PG CRC</strong> updated by <strong>ABC</strong>.</li>
+          <li>Task <strong>Swimming Pool</strong> completed by <strong>XYZ</strong>.</li>
+          <li>Deadline for <strong>Tender Release</strong> approaching in 2 days.</li>
         </ul>
       </section>
     </main>
 
-    <!-- Footer Section -->
     <footer class="footer">
       <p>&copy; 2024 Project Management. All rights reserved.</p>
     </footer>
-
-    <script>
-      // You can add any necessary JavaScript here
-    </script>
   </body>
 </html>
