@@ -19,12 +19,20 @@
       <ul>
         <li><a href="/dashboard">Home</a></li>
         <li><a href="/project">Projects</a></li>
+<<<<<<< HEAD
         <% if (user && ["manager", "contractor", "admin"].includes(user.role)) {
         %>
         <li>
           <a href="/project/<%= project.id %>/editproject">Edit Project</a>
         </li>
         <% } %>
+||||||| parent of f2bd84f (added logout option)
+        <li><a href="/project/<%= project.id %>/editproject">Edit Project</a></li>
+=======
+        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) { %>
+              <li><a href="/project/<%= project.id %>/editproject">Edit Project</a></li>
+        <% } %>
+>>>>>>> f2bd84f (added logout option)
         <li><a href="#reports">About</a></li>
         <li><a href="/logout">Logout</a></li>
       </ul>

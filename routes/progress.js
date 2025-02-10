@@ -37,7 +37,13 @@ router.get('/', async (req, res) => {
         }
 
         console.log(`Displaying progress page for project id: ${projectId}`);
+<<<<<<< HEAD
         res.render('listview_progress', {project,percent,user:req.user});
+||||||| parent of f2bd84f (added logout option)
+        res.render('progress', {project,percent});
+=======
+        res.render('listview_progress', {project,percent});
+>>>>>>> f2bd84f (added logout option)
     } catch (error) {
         console.error(error);
         res.status(500).send('Error fetching project');
@@ -131,8 +137,15 @@ router.put('/:progressId/editprogress',authorize(["engineer", "contractor", "adm
     }
 });
 
+<<<<<<< HEAD
 
 router.get('/addprogress',authorize(["engineer", "contractor", "admin"]), async (req, res) => {
+||||||| parent of f2bd84f (added logout option)
+router.get('/addprogress', async (req, res) => {
+=======
+
+router.get('/addprogress', async (req, res) => {
+>>>>>>> f2bd84f (added logout option)
     const projectId = req.params.id;
 
     try {
