@@ -60,7 +60,7 @@ app.use("/project/:id/bill", billroutes);
 app.use("/project/:id/progress", progressroutes);
 app.use(linkRoutes);
 app.use("/", adminRoutes);
-app.use("/", dashboardRoutes);
+app.use("/dashboard", dashboardRoutes);
 app.use(session({
   secret: 'iamtheking',
   resave: false,
