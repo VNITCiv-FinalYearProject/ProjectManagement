@@ -12,7 +12,7 @@ body {
 
 /* Navbar styling */
 nav {
-    background-color: #283593; /* Dark blue */
+    background-color: #08080a; /* Dark blue */
     color: white;
     padding: 1rem;
     width: 100%;
@@ -80,7 +80,7 @@ h1 {
 }
 
 .progress-bar-fill {
-    background-color: #ffd54f; /* Yellow for progress fill */
+    background-color: #ee2b1d; /* Yellow for progress fill */
     height: 100%;
     width: 0; /* Dynamically updated */
     border-radius: 15px;
@@ -114,7 +114,7 @@ th, td {
 }
 
 th {
-    background-color: #283593;
+    background-color: #0b0b0c;
     color: white;
 }
 
@@ -128,7 +128,7 @@ tr:hover {
 
 /* Button styling */
 button {
-    background-color: #283593;
+    background-color: #0e0f12;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -139,7 +139,7 @@ button {
 }
 
 button:hover {
-    background-color: #3949ab;
+    background-color: #d62b2b;
 }
 
 button:disabled {
@@ -165,7 +165,7 @@ button:disabled {
 
 /* Footer styling */
 .footer {
-    background-color: #283593; /* Dark blue */
+    background-color: #020516; /* Dark blue */
     color: white;
     padding: 1.2rem;
     text-align: center;

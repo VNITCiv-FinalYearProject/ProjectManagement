@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Progress</title>
     <link rel="stylesheet" href="/css/listview_progress.css" />
-</head>
-<body>
+  </head>
+  <body>
     <nav>
-        <ul>
-            <li><a href="/dashboard">Home</a></li>
-            <li><a href="/project">Projects</a></li>
-            <li><a href="#tasks">Notifications</a></li>
-            <li><a href="#reports">About</a></li>
-            <li><a href="/logout">Logout</a></li>
-        </ul>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project">Projects</a></li>
+        <li><a href="#tasks">Notifications</a></li>
+        <li><a href="#reports">About</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
     </nav>
 
     <div class="container">
-        <h1>Project Progress for : <%= project.title %></h1>
-        <h3>Start Date : <%= project.startDate %></h3>
-        <h3>Expected Date : <%= project.expectedDate %></h3>
+      <h1>Project Progress for : <%= project.title %></h1>
+      <h3>Start Date : <%= project.startDate %></h3>
+      <h3>Expected Date : <%= project.expectedDate %></h3>
 
-        <!-- Progress bar section -->
-        <div class="progress-container">
-            <h3>Overall Project Progress</h3>
-            <div class="progress-bar-background">
-                <div class="progress-bar-fill" id="progressBar"></div>
-            </div>
-            <% if (percent) { %>
-                <p><strong>Progress:</strong> <%= percent %> % completed</p>
-            <% } else { %>
-                <p><strong>Progress:</strong> Data not available</p>
-            <% } %>
+      <!-- Progress bar section -->
+      <div class="progress-container">
+        <h3>Overall Project Progress</h3>
+        <div class="progress-bar-background">
+          <div class="progress-bar-fill" id="progressBar"></div>
         </div>
+        <% if (percent) { %>
+        <p><strong>Progress:</strong> <%= percent %> % completed</p>
+        <% } else { %>
+        <p><strong>Progress:</strong> Data not available</p>
+        <% } %>
+      </div>
 
         <!-- Tabular Progress Section -->
         <table>
@@ -87,11 +87,11 @@
     </div>
 
     <div class="footer">
-        <p>&copy; 2024 Project Management. All rights reserved.</p>
+      <p>&copy; 2024 Construction Management. All rights reserved.</p>
     </div>
 
     <script>
-        document.getElementById("progressBar").style.width = "<%= percent %>%";
+      document.getElementById("progressBar").style.width = "<%= percent %>%";
     </script>
-</body>
+  </body>
 </html>
