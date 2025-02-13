@@ -33,9 +33,16 @@
     </ul>
 =======
         <li><a href="/logout">Logout</a></li>
+<<<<<<< HEAD
 
     </ul>
 >>>>>>> f2bd84f (added logout option)
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+
+    </ul>
+=======
+      </ul>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
       <div class="user-role">
         Logged in as:
         <strong
@@ -47,6 +54,7 @@
 
     <div class="main-content">
       <div class="container">
+<<<<<<< HEAD
 >>>>>>> temp2
         <h1>Projects</h1>
         <div class="project-grid" id="projectGrid">
@@ -63,10 +71,45 @@
             <div class="project-info">
               Company: <%- project.company %>
             </div>
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+          <h1>Projects</h1>
+          <div class="project-grid" id="projectGrid">
+              <% for(let project of projects) { %>
+                  <div class="project-card" onclick="window.location.href=`/project/<%= project.id %>`">
+                      <div class="project-name"><%- project.title %></div>
+                      <div class="project-info">Supervisor: <%- project.supervisor %></div>
+                      <div class="project-info">Company: <%- project.company %></div>
+                  </div>
+              <% } %>
+=======
+        <h1>Projects</h1>
+        <div class="project-grid" id="projectGrid">
+          <% for(let project of projects) { %>
+          <div
+            class="project-card"
+            onclick="window.location.href=`/project/<%= project.id %>`"
+          >
+            <div class="project-name"><%- project.title %></div>
+            <div class="project-info">
+              Supervisor: <%- project.supervisor %>
+            </div>
+            <div class="project-info">Company: <%- project.company %></div>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
           </div>
+<<<<<<< HEAD
           <% } %>
         </div>
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+      </div>
+  </div>
+=======
+          <% } %>
+        </div>
+      </div>
+    </div>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
 
+<<<<<<< HEAD
         <% if (user && ["manager", "contractor", "admin"].includes(user.role)) { %>
         <div class="add-project-container">
           <a href="/project/addproject" class="add-project-btn">+ Add Project</a>
@@ -79,6 +122,13 @@
           <% } %>
         </div>
       </div>
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+    <div class="footer">
+      <p>&copy; 2024 Project Management. All rights reserved.</p>
+=======
+    <div class="footer">
+      <p>&copy; 2024 Construction Management. All rights reserved.</p>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
     </div>
 
     <div class="footer">

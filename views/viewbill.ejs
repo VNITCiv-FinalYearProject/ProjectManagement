@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,12 +13,22 @@
     <!-- Navbar -->
     <%- include('partials/navbar') %>
 =======
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
     <title>View Bill - Demo bill</title>
     <link rel="stylesheet" href="/css/viewbill.css" />
   </head>
   <body>
     <!-- Navbar -->
     <nav class="navbar">
+<<<<<<< HEAD
 <<<<<<< HEAD
       <div class="navbar-left">
         <a href="/home" class="navbar-brand">Home</a>
@@ -43,10 +54,29 @@
 
         </div>
 >>>>>>> f2bd84f (added logout option)
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+        <div class="navbar-left">
+            <a href="/home" class="navbar-brand">Home</a>
+            <a href="/project" class="nav-link">Projects</a>
+            <a href="/notifications" class="nav-link">Notifications</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/logout">Logout</a>
+
+        </div>
+=======
+      <div class="navbar-left">
+        <a href="/home" class="navbar-brand">Home</a>
+        <a href="/project" class="nav-link">Projects</a>
+        <a href="/notifications" class="nav-link">Notifications</a>
+        <a href="/about" class="nav-link">About</a>
+        <a href="/logout">Logout</a>
+      </div>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
     </nav>
 >>>>>>> temp2
 
     <main>
+<<<<<<< HEAD
       <h1>Bill Details for Project : <%- project.title %></h1>
       <div class="bill-info">
         <p><strong>Bill ID:</strong> <%= bill.bill_id %></p>
@@ -64,9 +94,51 @@
         <p><strong>Comment: </strong><%= bill.Comment %> </p>
 =======
 >>>>>>> temp2
-
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+        <h1>Bill Details for Project : <%- project.title %></h1>
+        <div class="bill-info">
+            <p><strong>Bill ID:</strong> <%= bill.bill_id %></p>
+            <p><strong>Bill Name:</strong> <%= bill.Bill_Name %></p>
+            <p><strong>Date:</strong> <%= bill.date %></p>
+        </div>
+=======
+      <h1>Bill Details for Project : <%- project.title %></h1>
+      <div class="bill-info">
+        <p><strong>Bill ID:</strong> <%= bill.bill_id %></p>
+        <p><strong>Bill Name:</strong> <%= bill.Bill_Name %></p>
+        <p><strong>Date:</strong> <%= bill.date %></p>
       </div>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
 
+<<<<<<< HEAD
+      </div>
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+        <h2>Items</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item ID</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Units</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let item of bill.items){ %>
+                    <tr>
+                        <td><%= item.item_id %></td>
+                        <td><%= item.name %></td>
+                        <td><%= item.quantity %></td>
+                        <td><%= item.units %></td>
+                        <td><%= item.rate %></td>
+                        <td><%= item.amount %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+=======
       <h2>Items</h2>
       <table>
         <thead>
@@ -92,7 +164,54 @@
           <% } %>
         </tbody>
       </table>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
 
+<<<<<<< HEAD
+      <h2>Items</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Item ID</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Units</th>
+            <th>Rate</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let item of bill.items){ %>
+          <tr>
+            <td><%= item.item_id %></td>
+            <td><%= item.name %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.units %></td>
+            <td><%= item.rate %></td>
+            <td><%= item.amount %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+        <div class="amount-summary">
+            <p><strong>Abstract:</strong> <%= bill.total_amount.toFixed(2) %></p>
+            <p><strong>Previous Amount:</strong> <%= previousAmount.toFixed(2) %></p>
+            <p><strong>To Pay:</strong> <%= (bill.total_amount - previousAmount).toFixed(2) %></p>
+        </div>
+=======
+      <div class="amount-summary">
+        <p><strong>Abstract:</strong> <%= bill.total_amount.toFixed(2) %></p>
+        <p>
+          <strong>Previous Amount:</strong> <%= previousAmount.toFixed(2) %>
+        </p>
+        <p>
+          <strong>To Pay:</strong> <%= (bill.total_amount -
+          previousAmount).toFixed(2) %>
+        </p>
+      </div>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
+
+<<<<<<< HEAD
       <div class="amount-summary">
         <p><strong>Abstract:</strong> <%= bill.total_amount.toFixed(2) %></p>
         <p>
@@ -105,6 +224,12 @@
       </div>
 
       <a href="/project/<%= project.id %>/bill" class="button">Back to Bills</a>
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+
+        <a href="/project/<%= project.id %>/bill" class="button">Back to Bills</a>
+=======
+      <a href="/project/<%= project.id %>/bill" class="button">Back to Bills</a>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
     </main>
 
     <!-- Footer -->
@@ -112,8 +237,14 @@
       <p>© 2024 Construction Management. All rights reserved.</p>
     </footer>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <script src="/js/navbar.js"></script>
 =======
 >>>>>>> temp2
   </body>
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+</body>
+=======
+  </body>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
 </html>

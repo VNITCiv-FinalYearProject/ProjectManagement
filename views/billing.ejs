@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Billing System</title>
     <link rel="stylesheet" href="/css/billing.css">
     <link rel="stylesheet" href="/css/navbar.css" />
@@ -11,7 +11,7 @@
     <%- include('partials/navbar') %>
 
     <div class="container">
-        <h1>Displaying bill for : <%- project.title %></h1>
+      <h1>Displaying bill for : <%- project.title %></h1>
 
         <div class="button-group">
              <% if(user && ["engineer","contractor","admin"].includes(user.role)) { %>
@@ -19,9 +19,9 @@
             <% } %>
         </div>
 
-        <div id="lastUpdated">
-            Last Updated: <span id="dateUpdated">No updates yet</span>
-        </div>
+      <div id="lastUpdated">
+        Last Updated: <span id="dateUpdated">No updates yet</span>
+      </div>
 
         <div id="runningBill">
             <h3>Current Bills:</h3>
@@ -58,11 +58,48 @@
         </div>
             <a href="/project/<%= project.id %>" class="button">Back to Project</a>
 
+        <% if (project.bills.length > 0) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Sr No</th>
+              <th>Bill Name</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% project.bills.forEach((bill, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= bill.Bill_Name %></td>
+              <td><%= new Date(bill.date).toLocaleDateString('en-US') %></td>
+              <td>
+                <a
+                  href="/project/<%= project._id %>/bill/<%= bill._id %>"
+                  class="view-link"
+                  >View Bill</a
+                >
+                <a
+                  href="/project/<%= project._id %>/bill/<%= bill._id %>/edit"
+                  class="edit-link"
+                  >Edit Bill</a
+                >
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <% } else { %>
+        <p>No bills available yet.</p>
+        <% } %>
+      </div>
+      <a href="/project/<%= project.id %>" class="button">Back to Project</a>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>© 2024 Project Management. All rights reserved.</p>
+      <p>© 2024 Construction Management. All rights reserved.</p>
     </footer>
     <script src="/js/navbar.js"></script>
 </body>

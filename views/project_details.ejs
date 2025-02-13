@@ -4,10 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <title>Project_details</title>
 =======
     <title>Construction Management</title>
 >>>>>>> temp2
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+    <title>Project Management</title>
+=======
+    <title>Construction Management</title>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
     <link rel="stylesheet" href="/css/project_details.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
   </head>
@@ -20,6 +26,7 @@
         <li><a href="/dashboard">Home</a></li>
         <li><a href="/project">Projects</a></li>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <% if (user && ["manager", "contractor", "admin"].includes(user.role)) {
         %>
         <li>
@@ -31,6 +38,16 @@
 =======
         <% if (user && ["manager", "contractor", "admin"].includes(user.role)) { %>
               <li><a href="/project/<%= project.id %>/editproject">Edit Project</a></li>
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) { %>
+              <li><a href="/project/<%= project.id %>/editproject">Edit Project</a></li>
+=======
+        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) {
+        %>
+        <li>
+          <a href="/project/<%= project.id %>/editproject">Edit Project</a>
+        </li>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
         <% } %>
 >>>>>>> f2bd84f (added logout option)
         <li><a href="#reports">About</a></li>
@@ -42,6 +59,7 @@
     <div class="container">
       <div class="left-section">
         <ul>
+<<<<<<< HEAD
           <li>
 <<<<<<< HEAD
             <a href="/project/<%- project.id %>/progress" target="_blank">Progress</a>
@@ -67,6 +85,41 @@
           <li>
             <a href="/project/<%- project.id %>/comment">Comments</a>
           </li>
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+            <li>
+              <a href="/drawings" target="_blank">Drawings</a>
+            </li>
+            <li>
+              <a href="/tender" target="_blank">Tender</a>
+            </li>
+            <li>
+              <a href='/project/<%- project.id %>/bill' target="_blank">Bill</a>
+            </li>
+            <li>
+              <a href="/project/<%- project.id %>/progress" target="_blank">Progress</a>
+            </li>
+            <li>
+              <a href="/comments" target="_blank">Comments</a>
+            </li>
+=======
+          <li>
+            <a href="/drawings" target="_blank">Drawings</a>
+          </li>
+          <li>
+            <a href="/tender" target="_blank">Tender</a>
+          </li>
+          <li>
+            <a href="/project/<%- project.id %>/bill" target="_blank">Bill</a>
+          </li>
+          <li>
+            <a href="/project/<%- project.id %>/progress" target="_blank"
+              >Progress</a
+            >
+          </li>
+          <li>
+            <a href="/comments" target="_blank">Comments</a>
+          </li>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
         </ul>
       </div>
       <div class="main-section">
@@ -90,9 +143,31 @@
           <% } %>
         </div>
       </div>
+<<<<<<< HEAD
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+      <div class="right-section">
+        <h2>Add Comments</h2>
+        <form action="/add-comment" method="POST">
+          <textarea name="comment" placeholder="Write your comment here..."></textarea>
+          <button type="submit">Add Comment</button>
+        </form>
+      </div>
+=======
+      <div class="right-section">
+        <h2>Add Comments</h2>
+        <form action="/add-comment" method="POST">
+          <textarea
+            name="comment"
+            placeholder="Write your comment here..."
+          ></textarea>
+          <button type="submit">Add Comment</button>
+        </form>
+      </div>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
     </div>
 
     <div class="footer">
+<<<<<<< HEAD
       <p>
 <<<<<<< HEAD
         &copy; <%= new Date().getFullYear() %> Construction Management. All rights reserved.
@@ -101,6 +176,14 @@
         rights reserved.
 >>>>>>> temp2
       </p>
+||||||| parent of 95aade6 (uniform ui-black navs,btns,contrast)
+      <p>&copy; <%= new Date().getFullYear() %> Project Management. All rights reserved.</p>
+=======
+      <p>
+        &copy; <%= new Date().getFullYear() %> Construction Management. All
+        rights reserved.
+      </p>
+>>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
     </div>
     <script src="/js/navbar.js"></script>
   </body>
