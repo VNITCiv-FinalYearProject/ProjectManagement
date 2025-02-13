@@ -22,7 +22,9 @@
         <h1>Displaying bill for : <%- project.title %></h1>
 
         <div class="button-group">
+             <% if(user && ["engineer","contractor","admin"].includes(user.role)) { %>
             <a href="/project/<%- project.id %>/bill/addbill" class="button">Add Bill</a>
+            <% } %>
         </div>
 
         <div id="lastUpdated">
@@ -50,7 +52,9 @@
                                 <td><%= new Date(bill.date).toLocaleDateString('en-US') %></td>
                                 <td>
                                     <a href="/project/<%= project._id %>/bill/<%= bill._id %>" class="view-link">View Bill</a>
-                                    <a href="/project/<%= project._id %>/bill/<%= bill._id %>/edit" class="edit-link">Edit Bill</a>
+                                    <% if(["contractor","admin"].includes(user.role)) { %>
+                                        <a href="/project/<%= project._id %>/bill/<%= bill._id %>/edit" class="edit-link">Edit Bill</a>
+                                    <% } %>
                                 </td>
                             </tr>
                         <% }) %>

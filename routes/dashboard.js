@@ -4,8 +4,9 @@ const app = express();
 const router = express.Router({ mergeParams: true });
 const authorize = require("../middleware/authorize");
 const Project = require("../model/projectSchema");
+const User = require("../model/userSchema");
 
-router.get('/',authorize(["guest", "contractor", "manager", "senior-manager", "admin"]),async(req,res)=>{
+router.get('/',authorize(["guest","engineer", "contractor", "manager", "senior-manager", "admin"]),async(req,res)=>{
     const projects = await Project.find({})
     var ongoing = 0
     var completed = 0

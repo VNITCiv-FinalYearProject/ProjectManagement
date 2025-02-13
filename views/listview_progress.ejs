@@ -64,7 +64,10 @@
                             <td><%- prog.final_date %></td> <!-- Expected Completion Date -->
                             <td>
                                 <a href="/project/<%= project._id %>/progress/<%= prog._id %>/viewprogress">View</a>
-                                <a href="/project/<%= project._id %>/progress/<%= prog._id %>/editprogress">Edit</a>
+                                <% if(user && ["engineer","contractor","admin"].includes(user.role)) { %>
+                                        <a href="/project/<%= project._id %>/progress/<%= prog._id %>/editprogress">Edit</a>
+                                    </a>           
+                                <% } %>
                             </td>
                         </tr>
                     <% }) %>
@@ -75,10 +78,12 @@
                 <% } %>
             </tbody>
         </table>
-
-        <a href="/project/<%= project._id %>/progress/addprogress" class="button">
-            <button>Add Progress</button> 
-        </a>
+        <% if(user && ["engineer","contractor","admin"].includes(user.role)) { %>
+            <a href="/project/<%= project._id %>/progress/addprogress" class="button">
+                <button>Add Progress</button> 
+            </a>           
+         <% } %>
+        
     </div>
 
     <div class="footer">

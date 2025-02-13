@@ -3,6 +3,8 @@ const app = express()
 const router = express.Router({ mergeParams: true });
 const Bill = require('../model/billSchema');
 const Project = require('../model/projectSchema');
+const authorize = require('../middleware/authorize');
+const User = require("../model/userSchema");
 
 router.get('/', async (req, res) => {
     const projectId = req.params.id;
@@ -23,7 +25,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/addbill', async (req, res) => {
+router.get('/addbill',authorize(["engineer", "contractor", "admin"]), async (req, res) => {
     const projectId = req.params.id;
 
     try {
@@ -33,14 +35,14 @@ router.get('/addbill', async (req, res) => {
             return res.status(404).send('Project not found');
         }
 
-        res.render('addbill', { project });
+        res.render('addbill', { project:project, user:req.user });
     } catch (error) {
         console.error(error);
         res.status(500).send('Error fetching project');
     }
 });
 
-router.post('/addbill', async (req, res) => {
+router.post('/addbill',authorize(["engineer", "contractor", "admin"]), async (req, res) => {
     const projectId = req.params.id;
 
     try {
@@ -96,7 +98,8 @@ router.get('/:billId', async (req, res) => {
         res.render('viewbill', {
             project: project,
             bill: bill,
-            previousAmount
+            previousAmount,
+            user:req.user
         });
     } catch (error) {
         console.error('Error fetching project or bill:', error);
@@ -104,7 +107,7 @@ router.get('/:billId', async (req, res) => {
     }
 });
 
-router.put('/:billId', async (req, res) => {
+router.put('/:billId',authorize(["contractor", "admin"]), async (req, res) => {
     const { id: projectId, billId } = req.params;
 
     try {
@@ -132,7 +135,7 @@ router.put('/:billId', async (req, res) => {
 });
 
 // Other routes like GET, POST...
-router.get('/:billId/edit', async (req, res) => {
+router.get('/:billId/edit',authorize(["contractor", "admin"]), async (req, res) => {
     const { id: projectId, billId } = req.params;
 
     try {
@@ -146,7 +149,7 @@ router.get('/:billId/edit', async (req, res) => {
             return res.status(404).send('Bill not found');
         }
 
-        res.render('editbill', { project, bill });
+        res.render('editbill', { project:project, bill:bill, user:req.user });
     } catch (error) {
         console.error('Error fetching project or bill:', error);
         res.status(500).send('Error fetching project or bill');

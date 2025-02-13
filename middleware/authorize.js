@@ -1,6 +1,6 @@
 // middleware/authorize.js
 const jwt = require("jsonwebtoken");
-const User = require("../model/User");
+const User = require("../model/userSchema");
 
 const authorize = (allowedRoles = []) => {
   return async (req, res, next) => {

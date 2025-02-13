@@ -15,7 +15,7 @@ const linkRoutes = require("./routes/link");
 const authRoutes = require("./routes/auth");
 const dashboardRoutes = require("./routes/dashboard");
 const session = require('express-session');
-const User = require("./model/User");
+const User = require("./model/userSchema");
 const app = express();
 
 mongoose.connect(process.env.MONGO_URI)
