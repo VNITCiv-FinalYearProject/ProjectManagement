@@ -22,7 +22,7 @@ h1 {
 }
 
 .button {
-    background-color: #007bff;
+    background-color: #151515;
     color: white;
     padding: 10px 15px;
     text-decoration: none;
@@ -55,7 +55,7 @@ th {
 
 /* Navbar styling */
 .navbar {
-    background-color: #002366; /* Dark blue color */
+    background-color: #141415; /* Dark blue color */
     padding: 15px 0;
     text-align: center;
 }

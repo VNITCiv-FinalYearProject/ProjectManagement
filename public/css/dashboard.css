@@ -1,223 +1,322 @@
-/* General Body Styles */
+/* Dark Theme Dashboard CSS */
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #1a1a1a;         /* Dark charcoal */
+  --secondary-color: #2d88ff;      /* Bright blue */
+  --accent-color: #ff4d4d;         /* Alert red */
+  --text-light: #ffffff;
+  --text-dark: #050000;            /* Off-white text */
+  --background-light: rgb(255, 255, 255);     /* Deep dark background */
+  --surface-color: #f0eeee;        /* Card surfaces */
+  --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.5);
+  --transition-speed: 0.3s;
+}
+
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Ensures the body takes up the full height of the viewport */
-  background-image: url("/images/image.jpg");
-  background-size: cover; /* Ensures the image covers the entire background */
-  background-position: center;
-  background-attachment: fixed; /* Keeps the background fixed when scrolling */
-  overflow: hidden; /* Removes the scrollbar */
-  color: #333;
+  background: var(--background-light);
+  color: var(--text-dark);
 }
 
-/* NAVIGATION BAR STYLES */
+/* Dark Navigation */
 nav {
-  background-color: #334;  /* Dark blue background */
-  color: white;
-  padding: 1rem;
+  background: var(--primary-color);
+  padding: 1rem 2.5rem;
+  box-shadow: var(--shadow-medium);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Brand on left, nav items in middle, user menu on right */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Brand (left side) */
-nav .brand {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: white;
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-light);
   text-decoration: none;
-  margin-right: 2rem;
+  letter-spacing: 0.5px;
+  transition: transform var(--transition-speed) ease;
+  flex: 0 0 auto;
 }
 
-/* Nav links (center) */
-nav .nav-links {
+.brand:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
   list-style: none;
-  display: flex;
-  margin: 0 auto; /* Helps center the UL if there's space */
-  padding: 0;
-}
-
-nav .nav-links li {
-  margin: 0 1rem;
-}
-
-nav .nav-links li a {
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.3s ease;
-}
-
-nav .nav-links li a:hover {
-  background-color: #45a049; /* Light green for hover */
-  border-radius: 4px;
-}
-
-/* USER MENU (right side) */
-nav .user-menu {
-  position: relative;
-  cursor: pointer;
-}
-
-/* Dropdown toggle (e.g., an avatar or text) */
-nav .dropdown-toggle {
-  display: flex;
-  align-items: center;
-}
-
-/* Example avatar styling */
-nav .dropdown-toggle img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-/* Dropdown menu hidden by default */
-nav .dropdown-menu {
-  display: none;
   position: absolute;
-  top: 60px;     /* Adjust so it sits below the nav bar */
-  right: 0;      /* Aligns to the right edge of the user-menu */
-  background-color: #fff;
-  color: #333;
-  min-width: 150px;
-  border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-  padding: 0.5rem 0;
-  list-style: none;
-  margin: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* Dropdown menu items */
-nav .dropdown-menu li a {
-  color: #333;
+.nav-links li a {
+  color: var(--text-light);
   text-decoration: none;
-  display: block;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.2s ease;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  white-space: nowrap;
 }
 
-nav .dropdown-menu li a:hover {
-  background-color: #f1f1f1;
-}
-
-/* Show dropdown when .open is toggled in JS */
-nav .user-menu.open .dropdown-menu {
-  display: block;
-}
-
-/* MAIN CONTENT STYLES */
-main {
-  flex-grow: 1; /* Ensures the main content grows to fill available space */
-  padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.9); /* Light background with slight transparency */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin: 0 auto; /* Centers the content horizontally */
-  border-radius: 8px;
-  width: 80%; /* Controls the width of the main content */
-  max-width: 100vw; /* Sets a maximum width for large screens */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centers content vertically */
-  height: calc(100vh - 120px); /* Adjust height to fit between navbar and footer */
-}
-
-h1 {
-  color: #333;
-}
-
-p {
-  color: #000000;
-}
-
-/* FOOTER STYLES */
-.footer {
-  background-color: #334; /* Dark blue background */
-  color: white;           /* Ensures text is white */
-  text-align: center;
-  padding: 1rem;
-  margin-top: auto;
-  position: fixed; /* Keeps footer at the bottom */
+.nav-links li a::after {
+  content: '';
+  position: absolute;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--secondary-color);
+  transition: all var(--transition-speed) ease;
+  transform: translateX(-50%);
+}
+
+.nav-links li a:hover::after {
+  width: 80%;
+}
+
+/* Dark User Menu */
+.user-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.dropdown-toggle img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+.dropdown-toggle img:hover {
+  transform: scale(1.1);
+  border-color: var(--secondary-color);
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 130%;
+  background: var(--surface-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-medium);
+  padding: 0.8rem 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-speed) ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu li a {
+  color: var(--text-dark);
+  padding: 0.8rem 1.5rem;
+  display: block;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(45, 136, 255, 0.1);
+  color: var(--secondary-color);
+  padding-left: 2rem;
+}
+
+.user-menu.open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dark Main Content */
+main {
+  flex: 1;
+  padding: 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
   width: 100%;
 }
 
-.footer p {
-  margin: 0;
-  font-size: 14px; /* Adjusted font size for better readability */
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+  font-weight: 700;
 }
 
-/* QUICK STATS */
+/* Dark Stats Section */
 .quick-stats {
-  margin-bottom: 2rem;
+  margin-bottom: 3.5rem;
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 .stat-card {
-  background-color: #45a049;
-  color: white; /* Ensures text is visible on the green background */
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
+  background: var(--surface-color);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* RECENT ACTIVITY */
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+}
+
+.stat-card h3 {
+  color: var(--text-dark);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.stat-card p {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+/* Dark Recent Activity */
+.recent-activity {
+  background: var(--surface-color);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.recent-activity h2 {
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
 .recent-activity ul {
-  list-style-type: none;
-  padding: 0;
-  color: #333;
+  list-style: none;
 }
 
 .recent-activity li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ddd;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-speed) ease;
 }
 
-/* PROJECT OVERVIEW CARDS */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
+.recent-activity li:hover {
+  padding-left: 1rem;
+  background: rgba(45, 136, 255, 0.05);
 }
 
-.project-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.recent-activity li:last-child {
+  border-bottom: none;
 }
 
-/* TASK SUMMARY */
-.task-summary ul {
-  list-style-type: none;
-  padding: 0;
+/* Dark Footer */
+.footer {
+  background: var(--primary-color);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.task-summary li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ddd;
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
-  /* Stack nav links vertically on smaller screens */
-  nav .nav-links {
+  nav {
     flex-direction: column;
+    padding: 1rem;
+  }
+
+  .nav-links {
+    position: static;
+    transform: none;
+    flex-direction: column;
+    width: 100%;
     margin: 1rem 0;
+    text-align: center;
+    gap: 0.5rem;
+    background: var(--surface-color);
+    border-radius: 8px;
+    padding: 1rem;
   }
-  nav .nav-links li {
-    margin: 0.5rem 0;
+
+  .brand {
+    margin: 0 auto;
   }
+
+  .user-menu {
+    margin: 1rem auto 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card, .recent-activity {
+  animation: fadeIn 0.6s ease-out;
 }
