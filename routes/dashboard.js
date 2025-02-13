@@ -19,7 +19,7 @@ router.get('/',authorize(["guest", "contractor", "manager", "senior-manager", "a
         if (curr_date>e_date) {
             completed+=1
         }
-        console.log(`Start date : ${s_date}, End date : ${e_date}`)
+        // console.log(`Start date : ${s_date}, End date : ${e_date}`)
     }
 
     res.render('dashboard',{ongoing:ongoing,completed:completed,user:req.user})

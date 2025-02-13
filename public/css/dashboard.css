@@ -14,40 +14,103 @@ body {
   color: #333;
 }
 
-/* Navigation Bar Styles */
+/* NAVIGATION BAR STYLES */
 nav {
-  background-color: #334; /* Dark blue background */
+  background-color: #334;  /* Dark blue background */
   color: white;
   padding: 1rem;
   display: flex;
-  justify-content: center; /* Centers the navbar items */
+  align-items: center;
+  justify-content: space-between; /* Brand on left, nav items in middle, user menu on right */
 }
 
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+/* Brand (left side) */
+nav .brand {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-right: 2rem;
+}
+
+/* Nav links (center) */
+nav .nav-links {
+  list-style: none;
   display: flex;
-  justify-content: center; /* Ensures items are centered */
+  margin: 0 auto; /* Helps center the UL if there's space */
+  padding: 0;
 }
 
-nav ul li {
-  margin: 0 1rem; /* Equal spacing between items */
+nav .nav-links li {
+  margin: 0 1rem;
 }
 
-nav ul li a {
+nav .nav-links li a {
   color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s ease;
 }
 
-nav ul li a:hover {
+nav .nav-links li a:hover {
   background-color: #45a049; /* Light green for hover */
-  border-radius: 4px; /* Rounded hover effect */
+  border-radius: 4px;
 }
 
-/* Main Content Styles */
+/* USER MENU (right side) */
+nav .user-menu {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Dropdown toggle (e.g., an avatar or text) */
+nav .dropdown-toggle {
+  display: flex;
+  align-items: center;
+}
+
+/* Example avatar styling */
+nav .dropdown-toggle img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Dropdown menu hidden by default */
+nav .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60px;     /* Adjust so it sits below the nav bar */
+  right: 0;      /* Aligns to the right edge of the user-menu */
+  background-color: #fff;
+  color: #333;
+  min-width: 150px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  padding: 0.5rem 0;
+  list-style: none;
+  margin: 0;
+}
+
+/* Dropdown menu items */
+nav .dropdown-menu li a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s ease;
+}
+
+nav .dropdown-menu li a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show dropdown when .open is toggled in JS */
+nav .user-menu.open .dropdown-menu {
+  display: block;
+}
+
+/* MAIN CONTENT STYLES */
 main {
   flex-grow: 1; /* Ensures the main content grows to fill available space */
   padding: 2rem;
@@ -71,10 +134,10 @@ p {
   color: #000000;
 }
 
-/* Footer Styles */
+/* FOOTER STYLES */
 .footer {
   background-color: #334; /* Dark blue background */
-  color: white; /* Ensures text is white */
+  color: white;           /* Ensures text is white */
   text-align: center;
   padding: 1rem;
   margin-top: auto;
@@ -89,7 +152,7 @@ p {
   font-size: 14px; /* Adjusted font size for better readability */
 }
 
-/* Quick Stats */
+/* QUICK STATS */
 .quick-stats {
   margin-bottom: 2rem;
 }
@@ -108,7 +171,7 @@ p {
   text-align: center;
 }
 
-/* Recent Activity */
+/* RECENT ACTIVITY */
 .recent-activity ul {
   list-style-type: none;
   padding: 0;
@@ -120,7 +183,7 @@ p {
   border-bottom: 1px solid #ddd;
 }
 
-/* Project Overview Cards */
+/* PROJECT OVERVIEW CARDS */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -136,7 +199,7 @@ p {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Task Summary */
+/* TASK SUMMARY */
 .task-summary ul {
   list-style-type: none;
   padding: 0;
@@ -147,13 +210,14 @@ p {
   border-bottom: 1px solid #ddd;
 }
 
-/* Responsive Design */
+/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
-  nav ul {
+  /* Stack nav links vertically on smaller screens */
+  nav .nav-links {
     flex-direction: column;
-    align-items: center;
+    margin: 1rem 0;
   }
-  nav ul li {
-    margin-bottom: 10px;
+  nav .nav-links li {
+    margin: 0.5rem 0;
   }
 }
