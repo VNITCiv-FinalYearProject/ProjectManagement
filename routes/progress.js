@@ -38,12 +38,18 @@ router.get('/', async (req, res) => {
 
         console.log(`Displaying progress page for project id: ${projectId}`);
 <<<<<<< HEAD
+<<<<<<< HEAD
         res.render('listview_progress', {project,percent,user:req.user});
 ||||||| parent of f2bd84f (added logout option)
         res.render('progress', {project,percent});
 =======
         res.render('listview_progress', {project,percent});
 >>>>>>> f2bd84f (added logout option)
+||||||| parent of 62ad6dd (authorized billing and progress part)
+        res.render('listview_progress', {project,percent});
+=======
+        res.render('listview_progress', {project,percent,user:req.user});
+>>>>>>> 62ad6dd (authorized billing and progress part)
     } catch (error) {
         console.error(error);
         res.status(500).send('Error fetching project');
@@ -144,8 +150,14 @@ router.get('/addprogress',authorize(["engineer", "contractor", "admin"]), async 
 router.get('/addprogress', async (req, res) => {
 =======
 
+<<<<<<< HEAD
 router.get('/addprogress', async (req, res) => {
 >>>>>>> f2bd84f (added logout option)
+||||||| parent of 62ad6dd (authorized billing and progress part)
+router.get('/addprogress', async (req, res) => {
+=======
+router.get('/addprogress',authorize(["engineer", "contractor", "admin"]), async (req, res) => {
+>>>>>>> 62ad6dd (authorized billing and progress part)
     const projectId = req.params.id;
 
     try {

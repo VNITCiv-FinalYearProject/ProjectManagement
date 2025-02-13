@@ -4,7 +4,7 @@ const router = express.Router({ mergeParams: true });
 const Bill = require('../model/billSchema');
 const Project = require('../model/projectSchema');
 const authorize = require('../middleware/authorize');
-const user = require("../model/userSchema");
+const User = require("../model/userSchema");
 
 router.get('/', async (req, res) => {
     const projectId = req.params.id;
