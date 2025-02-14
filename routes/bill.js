@@ -4,7 +4,7 @@ const router = express.Router({ mergeParams: true });
 const Bill = require('../model/billSchema');
 const Project = require('../model/projectSchema');
 const authorize = require('../middleware/authorize');
-const User = require("../model/userSchema");
+const user = require("../model/userSchema");
 
 router.get('/', async (req, res) => {
     const projectId = req.params.id;
@@ -50,8 +50,15 @@ router.post('/addbill',authorize(["engineer", "contractor", "admin"]), async (re
         if (!project) {
             return res.status(404).send('Project not found');
         }
-
+        
         const bill = new Bill(req.body.bill);
+        // const name = req.user.name;
+        // const role = req.user.role;
+        // bill["created_by"] = { name, role };
+        bill.created_by = { 
+            name:req.user.name, 
+            role:req.user.role 
+            };
         project.bills.push(bill);
         await bill.save();
         await project.save();
@@ -107,7 +114,7 @@ router.get('/:billId', async (req, res) => {
     }
 });
 
-router.put('/:billId',authorize(["contractor", "admin"]), async (req, res) => {
+router.put('/:billId',authorize(["contractor","manager", "admin"]), async (req, res) => {
     const { id: projectId, billId } = req.params;
 
     try {
@@ -121,6 +128,10 @@ router.put('/:billId',authorize(["contractor", "admin"]), async (req, res) => {
             { $set: req.body.bill }, // Update the bill data
             { new: true, runValidators: true } // Return the updated document
         );
+        updatedBill.created_by = { 
+            name:req.user.name, 
+            role:req.user.role 
+            };
 
         if (!updatedBill) {
             return res.status(404).send('Bill not found');
@@ -135,7 +146,7 @@ router.put('/:billId',authorize(["contractor", "admin"]), async (req, res) => {
 });
 
 // Other routes like GET, POST...
-router.get('/:billId/edit',authorize(["contractor", "admin"]), async (req, res) => {
+router.get('/:billId/edit',authorize(["contractor","manager", "admin"]), async (req, res) => {
     const { id: projectId, billId } = req.params;
 
     try {
