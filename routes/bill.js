@@ -4,7 +4,7 @@ const router = express.Router({ mergeParams: true });
 const Bill = require('../model/billSchema');
 const Project = require('../model/projectSchema');
 const authorize = require('../middleware/authorize');
-const User = require("../model/userSchema");
+const user = require("../model/userSchema");
 
 router.get('/', async (req, res) => {
     const projectId = req.params.id;
@@ -58,9 +58,20 @@ router.post('/addbill',authorize(["engineer", "contractor", "admin"]), async (re
         }
         
         const bill = new Bill(req.body.bill);
+<<<<<<< HEAD
         
         bill.user_name=req.user.name;
         bill.user_role=req.user.role ;
+||||||| parent of 7ebcba1 (added auth for billing)
+=======
+        // const name = req.user.name;
+        // const role = req.user.role;
+        // bill["created_by"] = { name, role };
+        bill.created_by = { 
+            name:req.user.name, 
+            role:req.user.role 
+            };
+>>>>>>> 7ebcba1 (added auth for billing)
         project.bills.push(bill);
         await bill.save();
         await project.save();
@@ -117,7 +128,13 @@ router.get('/:billId', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 router.put('/:billId',authorize(["contractor","senior-manager","manager", "admin"]), async (req, res) => {
+||||||| parent of 7ebcba1 (added auth for billing)
+router.put('/:billId',authorize(["contractor", "admin"]), async (req, res) => {
+=======
+router.put('/:billId',authorize(["contractor","manager", "admin"]), async (req, res) => {
+>>>>>>> 7ebcba1 (added auth for billing)
     const { id: projectId, billId } = req.params;
 
     try {
@@ -132,8 +149,16 @@ router.put('/:billId',authorize(["contractor","senior-manager","manager", "admin
             { $set: req.body.bill }, // Update the bill data
             { new: true, runValidators: true } // Return the updated document
         );
+<<<<<<< HEAD
         updatedBill.user_name=req.user.name;
         updatedBill.user_role=req.user.role ;
+||||||| parent of 7ebcba1 (added auth for billing)
+=======
+        updatedBill.created_by = { 
+            name:req.user.name, 
+            role:req.user.role 
+            };
+>>>>>>> 7ebcba1 (added auth for billing)
 
         if (!updatedBill) {
             return res.status(404).send('Bill not found');
@@ -148,7 +173,13 @@ router.put('/:billId',authorize(["contractor","senior-manager","manager", "admin
 });
 
 // Other routes like GET, POST...
+<<<<<<< HEAD
 router.get('/:billId/edit',authorize(["contractor","senior-manager","manager", "admin"]), async (req, res) => {
+||||||| parent of 7ebcba1 (added auth for billing)
+router.get('/:billId/edit',authorize(["contractor", "admin"]), async (req, res) => {
+=======
+router.get('/:billId/edit',authorize(["contractor","manager", "admin"]), async (req, res) => {
+>>>>>>> 7ebcba1 (added auth for billing)
     const { id: projectId, billId } = req.params;
 
     try {

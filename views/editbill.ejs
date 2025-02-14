@@ -110,7 +110,13 @@
 =======
         <div class="form-field">
           <label for="billDate">Bill Date:</label>
-          <input type="date" id="billDate" name="bill[date]" readonly />
+          <input
+            type="date"
+            id="billDate"
+            name="bill[date]"
+            value="<%= new Date(bill.date).toISOString().split('T')[0] %>"
+            required
+          />
         </div>
 >>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
 
@@ -256,6 +262,16 @@
             name="bill[Comment]"
             placeholder="Add your comment here..."
           ></textarea>
+        </div>
+      <% } %>
+
+      <% if(user && ["manager","admin"].includes(user.role)){ %>
+        <div class="form-field">
+          <label for="billStatus">Bill Status:</label>
+          <select id="billStatus" name="bill[status]" required>
+            <option value="true" <%= bill.status ? 'selected' : '' %>>True</option>
+            <option value="false" <%= !bill.status ? 'selected' : '' %>>False</option>
+          </select>
         </div>
       <% } %>
 

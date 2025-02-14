@@ -107,6 +107,15 @@
         <p><strong>Bill ID:</strong> <%= bill.bill_id %></p>
         <p><strong>Bill Name:</strong> <%= bill.Bill_Name %></p>
         <p><strong>Date:</strong> <%= bill.date %></p>
+        <p><strong>Bill Status:</strong>
+        <% if(bill.status==true) {%>
+        Approved
+        
+        <% } else { %>
+        Pending
+        <% } %>
+         </p>
+
       </div>
 >>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
 
