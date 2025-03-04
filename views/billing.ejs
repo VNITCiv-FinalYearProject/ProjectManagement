@@ -73,9 +73,19 @@
                                 <td><%= bill.Bill_Name %></td>
                                 <td><%= new Date(bill.date).toLocaleDateString('en-US') %></td>
                                 <td>
+<<<<<<< HEAD
                                     <a href="/project/<%= project._id %>/bill/<%= bill._id %>" class="btn view-link">View Bill</a>
                                     <% if(["contractor","admin","senior-manager","manager"].includes(user.role)) { %>
                                         <a href="/project/<%= project._id %>/bill/<%= bill._id %>/edit" class="btn edit-link">Edit Bill</a>
+||||||| parent of b515b7c (added comments and included sr-manager process)
+                                    <a href="/project/<%= project._id %>/bill/<%= bill._id %>" class="view-link">View Bill</a>
+                                    <% if(["contractor","admin"].includes(user.role)) { %>
+                                        <a href="/project/<%= project._id %>/bill/<%= bill._id %>/edit" class="edit-link">Edit Bill</a>
+=======
+                                    <a href="/project/<%= project._id %>/bill/<%= bill._id %>" class="view-link">View Bill</a>
+                                    <% if(["contractor","admin","senior-manager","manager"].includes(user.role)) { %>
+                                        <a href="/project/<%= project._id %>/bill/<%= bill._id %>/edit" class="edit-link">Edit Bill</a>
+>>>>>>> b515b7c (added comments and included sr-manager process)
                                     <% } %>
                                 </td>                                
                             </tr>
