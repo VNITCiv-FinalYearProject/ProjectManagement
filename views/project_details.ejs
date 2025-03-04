@@ -40,7 +40,7 @@
             >
           </li>
           <li>
-            <a href="/comments" target="_blank">Comments</a>
+            <a href="/project/<%- project.id %>/comment">Comments</a>
           </li>
         </ul>
       </div>
@@ -56,16 +56,6 @@
             <strong>Completion Date :</strong> <%= project.expectedDate %><br /><br />
           </p>
         </div>
-      </div>
-      <div class="right-section">
-        <h2>Add Comments</h2>
-        <form action="/add-comment" method="POST">
-          <textarea
-            name="comment"
-            placeholder="Write your comment here..."
-          ></textarea>
-          <button type="submit">Add Comment</button>
-        </form>
       </div>
     </div>
 

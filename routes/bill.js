@@ -52,9 +52,7 @@ router.post('/addbill',authorize(["engineer", "contractor", "admin"]), async (re
         }
         
         const bill = new Bill(req.body.bill);
-        // const name = req.user.name;
-        // const role = req.user.role;
-        // bill["created_by"] = { name, role };
+        
         bill.created_by = { 
             name:req.user.name, 
             role:req.user.role 
@@ -114,7 +112,7 @@ router.get('/:billId', async (req, res) => {
     }
 });
 
-router.put('/:billId',authorize(["contractor","manager", "admin"]), async (req, res) => {
+router.put('/:billId',authorize(["contractor","senior-manager","manager", "admin"]), async (req, res) => {
     const { id: projectId, billId } = req.params;
 
     try {
@@ -146,7 +144,7 @@ router.put('/:billId',authorize(["contractor","manager", "admin"]), async (req, 
 });
 
 // Other routes like GET, POST...
-router.get('/:billId/edit',authorize(["contractor","manager", "admin"]), async (req, res) => {
+router.get('/:billId/edit',authorize(["contractor","senior-manager","manager", "admin"]), async (req, res) => {
     const { id: projectId, billId } = req.params;
 
     try {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const bill = require('./billSchema')
 const progress = require('./progressSchema');
-
+const comment = require('../model/commentSchema')
 const { Schema } = mongoose
 
 const projectSchema = new Schema({
@@ -26,6 +26,12 @@ const projectSchema = new Schema({
       {
         type: Schema.Types.ObjectId,
         ref: 'Progress'
+      }
+    ],
+    comments : [
+      {
+        type : Schema.Types.ObjectId,
+        ref : 'Comment'
       }
     ]
 },

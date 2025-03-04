@@ -52,7 +52,7 @@
                                 <td><%= new Date(bill.date).toLocaleDateString('en-US') %></td>
                                 <td>
                                     <a href="/project/<%= project._id %>/bill/<%= bill._id %>" class="view-link">View Bill</a>
-                                    <% if(["contractor","admin"].includes(user.role)) { %>
+                                    <% if(["contractor","admin","senior-manager","manager"].includes(user.role)) { %>
                                         <a href="/project/<%= project._id %>/bill/<%= bill._id %>/edit" class="edit-link">Edit Bill</a>
                                     <% } %>
                                 </td>

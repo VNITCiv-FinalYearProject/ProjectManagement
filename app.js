@@ -14,6 +14,7 @@ const progressroutes = require("./routes/progress");
 const linkRoutes = require("./routes/link");
 const authRoutes = require("./routes/auth");
 const dashboardRoutes = require("./routes/dashboard");
+const commentroutes = require("./routes/comment");
 const session = require('express-session');
 const User = require("./model/userSchema");
 const app = express();
@@ -58,6 +59,7 @@ app.use(authRoutes);
 app.use("/project", projectroutes);
 app.use("/project/:id/bill", billroutes);
 app.use("/project/:id/progress", progressroutes);
+app.use("/project/:id/comment", commentroutes);
 app.use(linkRoutes);
 app.use("/", adminRoutes);
 app.use("/dashboard", dashboardRoutes);
@@ -85,5 +87,6 @@ app.get('/project', (req, res) => {
   console.log('User:', req.user);
   res.render('listofprojects', { user: req.user, projects: [] });
 });
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}!`));
