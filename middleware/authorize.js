@@ -1,6 +1,6 @@
 // middleware/authorize.js
 const jwt = require("jsonwebtoken");
-const User = require("../model/User");
+const User = require("../model/userSchema");
 
 const authorize = (allowedRoles = []) => {
   return async (req, res, next) => {
@@ -17,9 +17,9 @@ const authorize = (allowedRoles = []) => {
         console.log("User not found");
         return res.status(401).json({ message: "Unauthorized" });
       }
-      console.log("User role:", user.role, "Allowed roles:", allowedRoles);
+      // console.log("User role:", user.role, "Allowed roles:", allowedRoles);
       if (!allowedRoles.includes(user.role) || !user.approved) {
-        console.log("User not authorized or not approved");
+        // console.log("User not authorized or not approved");
         return res.status(403).json({ message: "Forbidden" });
       }
       req.user = user;

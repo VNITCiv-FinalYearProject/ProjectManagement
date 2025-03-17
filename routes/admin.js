@@ -1,7 +1,7 @@
 // routes/admin.js
 const express = require("express");
 const router = express.Router();
-const User = require("../model/User");
+const User = require("../model/userSchema");
 const authorize = require("../middleware/authorize");
 
 // Render the Role Management page for admin

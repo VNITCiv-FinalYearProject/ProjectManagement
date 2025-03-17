@@ -13,9 +13,11 @@ const billroutes = require("./routes/bill");
 const progressroutes = require("./routes/progress");
 const linkRoutes = require("./routes/link");
 const authRoutes = require("./routes/auth");
+const documentRoutes = require("./routes/document");
 const dashboardRoutes = require("./routes/dashboard");
+const commentroutes = require("./routes/comment");
 const session = require('express-session');
-const User = require("./model/User");
+const User = require("./model/userSchema");
 const app = express();
 
 mongoose.connect(process.env.MONGO_URI)
@@ -58,15 +60,19 @@ app.use(authRoutes);
 app.use("/project", projectroutes);
 app.use("/project/:id/bill", billroutes);
 app.use("/project/:id/progress", progressroutes);
+app.use("/project/:id/comment", commentroutes);
 app.use(linkRoutes);
 app.use("/", adminRoutes);
-app.use("/", dashboardRoutes);
+app.use("/dashboard", dashboardRoutes);
+
 app.use(session({
   secret: 'iamtheking',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false } // Set to true if using HTTPS
 }));
+
+app.use("/project/:id", documentRoutes);
 
 const verifyToken = (req, res, next) => {
   if (!req.user) {
@@ -79,11 +85,29 @@ app.get("/", (req, res) => res.render("signup"));
 app.get("/login", (req, res) => res.render("login"));
 app.get("/signup", (req, res) => res.render("signup"));
 app.get("/drawings", verifyToken, (req, res) => res.render("drawings"));
-app.get("/tender", verifyToken, (req, res) => res.render("tender"));
+// app.get("/tender", verifyToken, (req, res) => res.render("tender"));
+// app.get("/documents", verifyToken, (req,res) => res.render("documents"));
+app.get("/documents/:id", verifyToken, async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const project = await mongoose.model('Project').findById(projectId);
+    if (!project) {
+      return res.status(404).send("Project not found");
+    }
+    res.render("documents", { project, user: req.user });
+  } catch (err) {
+    console.error("Error fetching project for documents page:", err);
+    res.status(500).send("Server error");
+  }
+});
+app.get("/documents", verifyToken, (req, res) => {
+  res.redirect("/project"); // Redirect to projects page if no project ID is specified
+});
 app.get('/project', (req, res) => {
   console.log('Session:', req.session);
   console.log('User:', req.user);
   res.render('listofprojects', { user: req.user, projects: [] });
 });
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}!`));

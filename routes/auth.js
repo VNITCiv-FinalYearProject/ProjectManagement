@@ -2,7 +2,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../model/User");
+const User = require("../model/userSchema");
 const router = express.Router();
 
 // Signup Route
