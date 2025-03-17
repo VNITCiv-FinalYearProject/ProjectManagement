@@ -32,15 +32,16 @@
             <a href="/tender" target="_blank">Tender</a>
           </li> -->
           <li>
-            <a href="/documents/<%= project._id %>" target="_blank">Documents</a>
+            <a href="/project/<%- project.id %>/progress" target="_blank"
+              >Progress</a
+            >
           </li>
           <li>
             <a href="/project/<%- project.id %>/bill" target="_blank">Bill</a>
           </li>
+          
           <li>
-            <a href="/project/<%- project.id %>/progress" target="_blank"
-              >Progress</a
-            >
+            <a href="/documents/<%= project._id %>" target="_blank">Documents</a>
           </li>
           <li>
             <a href="/project/<%- project.id %>/comment">Comments</a>
