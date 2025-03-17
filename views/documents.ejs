@@ -444,10 +444,10 @@
           <% if (project && project.drawings && project.drawings.length > 0) {
           %> <% project.drawings.forEach((drawing) => { %>
           <div class="document-card" data-gdrive="<%= drawing.link %>">
-            <img
+            <!-- <img
               src="<%= drawing.image || '/images/gfloor.png' %>"
               alt="<%= drawing.title %>"
-            />
+            /> -->
             <div class="document-info">
               <p class="title"><%= drawing.title %></p>
               <p class="date">
@@ -560,10 +560,10 @@
           <% if (project && project.tenders && project.tenders.length > 0) { %>
           <% project.tenders.forEach((tender) => { %>
           <div class="document-card" data-gdrive="<%= tender.link %>">
-            <img
+            <!-- <img
               src="<%= tender.image || '/images/tender-image.png' %>"
               alt="<%= tender.title %>"
-            />
+            /> -->
             <div class="document-info">
               <p class="title"><%= tender.title %></p>
               <p class="date">
