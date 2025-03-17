@@ -41,7 +41,6 @@
       padding: 0 1rem;
       max-width: 1200px;
       margin: 0 auto;
-      
     }
 
     .drawing-card {
@@ -66,7 +65,6 @@
       border-color: black;
     }
 
-
     .drawing-card p {
       margin: 0;
       padding: 1rem;
@@ -75,7 +73,6 @@
       border-top: 1px solid #b3afaf;
     }
 
-    /* Performance-focused interactions */
     @media (hover: hover) {
       .drawing-card:hover {
         transform: translateY(-2px);
@@ -83,15 +80,25 @@
       }
     }
 
-    /* Optimized responsive images */
     img[loading="lazy"] {
       background: #f1f3f4;
+    }
+
+    /* Hide the form container by default */
+    #formContainer {
+      margin: 100px;
+      display: none;
     }
   </style>
 </head>
 <body>
   <div class="header">
     <h1>Tender and Bill Documents</h1>
+    <a href="https://drive.google.com/drive/folders/12IoP0p9K0HG9WvSjnunwZLrnnlqDBXT6" target="_blank">
+      Upload Documents to Google Drive
+    </a>
+    <br><br>
+    <button id="toggleFormButton">Add New Document</button>
   </div>
 
   <div class="drawing-grid">
@@ -114,15 +121,16 @@
       <img src="/images/3rd-RA.png" alt="Roof Slab Plan" loading="lazy" width="250" height="200">
       <p>3rd RA Bill</p>
     </div>
-    
-    <!-- <div class="drawing-card" data-gdrive="https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/preview">
+    <!-- Additional card commented out
+    <div class="drawing-card" data-gdrive="https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/preview">
       <img src="/images/window-sill.png" alt="Window Sill" loading="lazy" width="250" height="200">
       <p>Layout Plan at Window Sill Level</p>
-    </div> -->
+    </div>
+    -->
   </div>
 
-  <!-- Form Upload -->
-  <!-- <div style="margin: 100px;">
+  <!-- Form Upload Container (hidden by default) -->
+  <div id="formContainer">
     <h2>Upload New Tender Document</h2>
     <form id="linkForm">
       <input 
@@ -141,19 +149,57 @@
       <br><br>
       <button type="submit">Add Document</button>
     </form>
-  </div> -->
+  </div>
 
   <!-- Defer non-critical JS -->
   <!-- <script defer src="/js/linkUploader.js"></script> -->
   <script defer>
-    // For the existing hardcoded cards
+    // Open existing cards in a new tab when clicked
     document.querySelectorAll('.drawing-card').forEach(card => {
       card.addEventListener('click', () => {
         window.open(card.dataset.gdrive, '_blank'); 
       });
     });
-  </script>
 
+    // Toggle form visibility when clicking the "Add New Document" button
+    document.getElementById('toggleFormButton').addEventListener('click', () => {
+      const formContainer = document.getElementById('formContainer');
+      if (formContainer.style.display === 'none' || formContainer.style.display === '') {
+        formContainer.style.display = 'block';
+      } else {
+        formContainer.style.display = 'none';
+      }
+    });
+
+    // Handle form submission: create a new card with the entered info
+    document.getElementById('linkForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('titleInput').value;
+      const url = document.getElementById('urlInput').value;
+
+      // Create a new card element
+      const card = document.createElement('div');
+      card.className = 'drawing-card';
+      card.dataset.gdrive = url;
+      
+      // Use a default image for new cards
+      card.innerHTML = `
+        <img src="/images/default.png" alt="${title}" loading="lazy" width="250" height="200">
+        <p>${title}</p>
+      `;
+      
+      // Open the Google Drive link in a new tab when clicked
+      card.addEventListener('click', () => {
+        window.open(url, '_blank');
+      });
+      
+      // Append the new card to the document grid
+      document.querySelector('.drawing-grid').appendChild(card);
+      
+      // Reset the form fields
+      e.target.reset();
+    });
+  </script>
   
 </body>
 </html>

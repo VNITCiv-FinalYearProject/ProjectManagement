@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Documents</title>
+
+    <style>
+      /* Reset & base styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --primary-color: #1a1a1a;
+        --secondary-color: #2d88ff;
+        --accent-color: #ff4d4d;
+        --text-light: #ffffff;
+        --text-dark: #050000;
+        --background-light: #f5f5f5;
+        --surface-color: #f0eeee;
+        --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.3);
+        --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.5);
+      }
+
+      body {
+        font-family: "Segoe UI", Roboto, Arial, sans-serif;
+        background: var(--background-light);
+        color: #333;
+        line-height: 1.5;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      /* Navbar styling */
+      nav {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+        padding: 1rem;
+        width: 100%;
+        box-shadow: var(--shadow-medium);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      nav ul li {
+        margin-right: 1.5rem;
+      }
+
+      nav ul li:last-child {
+        margin-right: 0;
+      }
+
+      nav ul li a {
+        color: var(--text-light);
+        text-decoration: none;
+        padding: 0.5rem 1.2rem;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      nav ul li a:hover {
+        background-color: var(--secondary-color);
+      }
+
+      /* Container styling */
+      .container {
+        max-width: 1600px; /* Increased from 1200px */
+        margin: 30px auto;
+        padding: 0 20px;
+        flex: 1;
+      }
+
+      .section {
+        background: #fff;
+        margin-bottom: 40px;
+        padding: 25px 30px; /* Increased horizontal padding */
+        border-radius: 8px;
+        box-shadow: var(--shadow-soft);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .section-header h2 {
+        font-size: 1.5rem;
+        color: var(--text-dark);
+        font-weight: 500;
+      }
+
+      .section-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .upload-button {
+        background: var(--secondary-color);
+        color: var(--text-light);
+        border: none;
+        padding: 10px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .upload-button:hover {
+        background-color: #2472cc;
+      }
+
+      .upload-button::before {
+        content: "+";
+        font-size: 18px;
+        margin-right: 8px;
+      }
+
+      .drive-link {
+        color: var(--secondary-color);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s ease;
+      }
+
+      .drive-link:hover {
+        color: #2472cc;
+        text-decoration: underline;
+      }
+
+      .drive-link svg {
+        margin-right: 6px;
+        height: 18px;
+        width: 18px;
+      }
+
+      /* Grid styles for document cards */
+      .documents-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+      }
+
+      .document-card {
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        border: 1px solid #e0e0e0;
+      }
+
+      .document-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .document-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-bottom: 1px solid #e0e0e0;
+        background: #f8f9fa;
+      }
+
+      .document-info {
+        padding: 12px;
+      }
+
+      .document-info p.title {
+        font-weight: 500;
+        color: var(--text-dark);
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .document-info p.date {
+        font-size: 0.8rem;
+        color: #5f6368;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 40px 0;
+        color: #5f6368;
+        font-style: italic;
+      }
+
+      /* Form styles */
+      .form-container {
+        display: none;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .form-container h3 {
+        margin-bottom: 15px;
+        color: var(--text-dark);
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 0.9rem;
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .btn {
+        padding: 10px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+        border: none;
+      }
+
+      .btn-primary {
+        background: var(--secondary-color);
+        color: white;
+      }
+
+      .btn-secondary {
+        background: #e0e0e0;
+        color: var(--text-dark);
+      }
+
+      /* Footer styling */
+      footer {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+        padding: 1.2rem;
+        text-align: center;
+        margin-top: auto;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      /* Modal for document preview */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: white;
+        width: 80%;
+        height: 80%;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow-medium);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid #e0e0e0;
+        background-color: var(--primary-color);
+        color: var(--text-light);
+      }
+
+      .modal-header h3 {
+        font-weight: 500;
+      }
+
+      .close-button {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-light);
+      }
+
+      .modal-body {
+        height: calc(100% - 60px);
+      }
+
+      .modal-body iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project">Projects</a></li>
+        <li><a href="#tasks">Notifications</a></li>
+        <li><a href="#reports">About</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <!-- Drawings Section -->
+      <div class="section" id="drawingsSection">
+        <div class="section-header">
+          <h2>Project Drawings</h2>
+          <div class="section-actions">
+            <a
+              href="https://drive.google.com/drive/folders/1jJ0AXo9A7DPM6opPuwriQBD75Z5HQfZz"
+              class="drive-link"
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 87.3 78"
+                height="20px"
+                width="20px"
+              >
+                <path
+                  d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z"
+                  fill="#0066da"
+                />
+                <path
+                  d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z"
+                  fill="#00ac47"
+                />
+                <path
+                  d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z"
+                  fill="#ea4335"
+                />
+                <path
+                  d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z"
+                  fill="#00832d"
+                />
+                <path
+                  d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z"
+                  fill="#2684fc"
+                />
+                <path
+                  d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z"
+                  fill="#ffba00"
+                />
+              </svg>
+              View in Google Drive
+            </a>
+            <% if(user &&
+            ["engineer","contractor","senior-manager","manager","admin"].includes(user.role))
+            { %>
+            <button class="upload-button" id="toggleDrawingForm">
+              Upload Drawing
+            </button>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Drawing Upload Form -->
+        <div class="form-container" id="drawingForm">
+          <h3>Add New Drawing</h3>
+          <form id="drawingUploadForm">
+            <div class="form-group">
+              <label for="drawingTitle">Drawing Title</label>
+              <input
+                type="text"
+                id="drawingTitle"
+                placeholder="Enter drawing title"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="drawingLink">Google Drive Link</label>
+              <input
+                type="text"
+                id="drawingLink"
+                placeholder="Paste Google Drive link here"
+                required
+              />
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="toggleForm('drawingForm')"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">Add Drawing</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="documents-grid" id="drawingsGrid">
+          <% if (project && project.drawings && project.drawings.length > 0) {
+          %> <% project.drawings.forEach((drawing) => { %>
+          <div class="document-card" data-gdrive="<%= drawing.link %>">
+            <img
+              src="<%= drawing.image || '/images/gfloor.png' %>"
+              alt="<%= drawing.title %>"
+            />
+            <div class="document-info">
+              <p class="title"><%= drawing.title %></p>
+              <p class="date">
+                <%= new Date(drawing.date || Date.now()).toLocaleDateString() %>
+              </p>
+            </div>
+          </div>
+          <% }); %> <% } else { %>
+          <div class="empty-state">
+            <p>
+              No drawings available yet. Use the upload button to add project
+              drawings.
+            </p>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- Tender Documents Section -->
+      <div class="section" id="tenderSection">
+        <div class="section-header">
+          <h2>Tender Documents</h2>
+          <div class="section-actions">
+            <a
+              href="https://drive.google.com/drive/folders/12IoP0p9K0HG9WvSjnunwZLrnnlqDBXT6"
+              class="drive-link"
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 87.3 78"
+                height="20px"
+                width="20px"
+              >
+                <path
+                  d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z"
+                  fill="#0066da"
+                />
+                <path
+                  d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z"
+                  fill="#00ac47"
+                />
+                <path
+                  d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z"
+                  fill="#ea4335"
+                />
+                <path
+                  d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z"
+                  fill="#00832d"
+                />
+                <path
+                  d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z"
+                  fill="#2684fc"
+                />
+                <path
+                  d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z"
+                  fill="#ffba00"
+                />
+              </svg>
+              View in Google Drive
+            </a>
+            <% if(user &&
+            ["engineer","contractor","senior-manager","manager","admin"].includes(user.role))
+            { %>
+            <button class="upload-button" id="toggleTenderForm">
+              Upload Tender
+            </button>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Tender Upload Form -->
+        <div class="form-container" id="tenderForm">
+          <h3>Add New Tender Document</h3>
+          <form id="tenderUploadForm">
+            <div class="form-group">
+              <label for="tenderTitle">Document Title</label>
+              <input
+                type="text"
+                id="tenderTitle"
+                placeholder="Enter document title"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="tenderLink">Google Drive Link</label>
+              <input
+                type="text"
+                id="tenderLink"
+                placeholder="Paste Google Drive link here"
+                required
+              />
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="toggleForm('tenderForm')"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Add Document
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="documents-grid" id="tendersGrid">
+          <% if (project && project.tenders && project.tenders.length > 0) { %>
+          <% project.tenders.forEach((tender) => { %>
+          <div class="document-card" data-gdrive="<%= tender.link %>">
+            <img
+              src="<%= tender.image || '/images/tender-image.png' %>"
+              alt="<%= tender.title %>"
+            />
+            <div class="document-info">
+              <p class="title"><%= tender.title %></p>
+              <p class="date">
+                <%= new Date(tender.date || Date.now()).toLocaleDateString() %>
+              </p>
+            </div>
+          </div>
+          <% }); %> <% } else { %>
+          <div class="empty-state">
+            <p>
+              No tender documents available yet. Use the upload button to add
+              tender documents.
+            </p>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Document Preview Modal -->
+    <div id="documentModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle">Document Preview</h3>
+          <button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe id="documentFrame" src="" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        &copy; <%= new Date().getFullYear() %> Construction Management. All
+        rights reserved.
+      </p>
+    </footer>
+
+    <script>
+      // Toggle form visibility
+      function toggleForm(formId) {
+        const form = document.getElementById(formId);
+        if (form.style.display === "block") {
+          form.style.display = "none";
+        } else {
+          form.style.display = "block";
+        }
+      }
+
+      // Set up event listeners for toggle buttons
+      document
+        .getElementById("toggleDrawingForm")
+        .addEventListener("click", () => {
+          toggleForm("drawingForm");
+        });
+
+      document
+        .getElementById("toggleTenderForm")
+        .addEventListener("click", () => {
+          toggleForm("tenderForm");
+        });
+
+      // Handle drawing upload form submission
+      document
+        .getElementById("drawingUploadForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const title = document.getElementById("drawingTitle").value;
+          const link = document.getElementById("drawingLink").value;
+
+          try {
+            // Get project ID from URL
+            const urlParts = window.location.pathname.split("/");
+            const projectId = urlParts[urlParts.indexOf("documents") + 1];
+
+            // Send data to server
+            const response = await fetch(
+              `/project/${projectId}/drawing/upload`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ title, link }),
+              }
+            );
+
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(errorData.error || "Failed to upload drawing");
+            }
+
+            const data = await response.json();
+
+            // Create new card element
+            const card = document.createElement("div");
+            card.className = "document-card";
+            card.setAttribute("data-gdrive", link);
+
+            // Format the card HTML
+            card.innerHTML = `
+              <img src="/images/gfloor.png" alt="${title}">
+              <div class="document-info">
+                <p class="title">${title}</p>
+                <p class="date">${new Date().toLocaleDateString()}</p>
+              </div>
+            `;
+
+            // Add click handler
+            card.addEventListener("click", () => {
+              const modal = document.getElementById("documentModal");
+              const modalTitle = document.getElementById("modalTitle");
+              const documentFrame = document.getElementById("documentFrame");
+
+              modalTitle.textContent = title;
+              documentFrame.src = link;
+              modal.style.display = "flex";
+            });
+
+            // Add the card to the grid
+            document.getElementById("drawingsGrid").prepend(card);
+
+            // Reset form and hide it
+            document.getElementById("drawingTitle").value = "";
+            document.getElementById("drawingLink").value = "";
+            toggleForm("drawingForm");
+
+            alert("Drawing added successfully!");
+          } catch (error) {
+            console.error("Error uploading drawing:", error);
+            alert(`Error: ${error.message}`);
+          }
+        });
+
+      // Handle tender upload form submission
+      document
+        .getElementById("tenderUploadForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const title = document.getElementById("tenderTitle").value;
+          const link = document.getElementById("tenderLink").value;
+
+          try {
+            // Get project ID from URL
+            const urlParts = window.location.pathname.split("/");
+            const projectId = urlParts[urlParts.indexOf("documents") + 1];
+
+            // Send data to server
+            const response = await fetch(
+              `/project/${projectId}/tender/upload`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ title, link }),
+              }
+            );
+
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(
+                errorData.error || "Failed to upload tender document"
+              );
+            }
+
+            const data = await response.json();
+
+            // Create new card element
+            const card = document.createElement("div");
+            card.className = "document-card";
+            card.setAttribute("data-gdrive", link);
+
+            // Format the card HTML
+            card.innerHTML = `
+                <img src="/images/tender-image.png" alt="${title}">
+                <div class="document-info">
+                    <p class="title">${title}</p>
+                    <p class="date">${new Date().toLocaleDateString()}</p>
+                </div>
+            `;
+
+            // Add click handler
+            card.addEventListener("click", () => {
+              const modal = document.getElementById("documentModal");
+              const modalTitle = document.getElementById("modalTitle");
+              const documentFrame = document.getElementById("documentFrame");
+
+              modalTitle.textContent = title;
+              documentFrame.src = link;
+              modal.style.display = "flex";
+            });
+
+            // Add the card to the grid
+            document.getElementById("tendersGrid").prepend(card);
+
+            // Reset form and hide it
+            document.getElementById("tenderTitle").value = "";
+            document.getElementById("tenderLink").value = "";
+            toggleForm("tenderForm");
+
+            alert("Tender document added successfully!");
+          } catch (error) {
+            console.error("Error uploading tender document:", error);
+            alert(`Error: ${error.message}`);
+          }
+        });
+
+      // Document card click handler (for existing cards)
+      document.querySelectorAll(".document-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          const link = card.getAttribute("data-gdrive");
+          const title = card.querySelector(".title").textContent;
+
+          // Open document in modal
+          const modal = document.getElementById("documentModal");
+          const modalTitle = document.getElementById("modalTitle");
+          const documentFrame = document.getElementById("documentFrame");
+
+          modalTitle.textContent = title;
+          documentFrame.src = link;
+          modal.style.display = "flex";
+        });
+      });
+
+      // Close modal when close button is clicked
+      document.querySelector(".close-button").addEventListener("click", () => {
+        const modal = document.getElementById("documentModal");
+        modal.style.display = "none";
+        document.getElementById("documentFrame").src = "";
+      });
+
+      // Close modal when clicking outside the content
+      document
+        .getElementById("documentModal")
+        .addEventListener("click", (e) => {
+          if (e.target === document.getElementById("documentModal")) {
+            document.getElementById("documentModal").style.display = "none";
+            document.getElementById("documentFrame").src = "";
+          }
+        });
+    </script>
+  </body>
+</html>
