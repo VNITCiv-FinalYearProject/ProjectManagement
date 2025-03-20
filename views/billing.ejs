@@ -26,10 +26,10 @@
     </nav>
 =======
     <link rel="stylesheet" href="/css/billing.css">
-    <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
     <!-- Navbar -->
+<<<<<<< HEAD
 <<<<<<< HEAD
     <nav class="navbar">
         <div class="navbar-container">
@@ -54,6 +54,19 @@
 =======
     <%- include('./navbar.ejs') %>
 >>>>>>> 5a8fe4a (changed navbar)
+||||||| parent of a94595c (changed navbar)
+    <%- include('./navbar.ejs') %>
+=======
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/dashboard" class="navbar-brand">Home</a>
+            <a href="/project" class="nav-link">Projects</a>
+            <a href="/notifications" class="nav-link">Notifications</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/logout" class="nav-link">Logout</a>
+        </div>
+    </nav>
+>>>>>>> a94595c (changed navbar)
 
     <div class="container">
         <h1>Displaying bill for : <%- project.title %></h1>
@@ -123,6 +136,7 @@
     <script src="/js/navbar.js"></script>
 </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 ||||||| parent of 1661e04 (billing changed)
   </body>
 =======
@@ -142,4 +156,18 @@
       });
     </script>
 >>>>>>> 5a8fe4a (changed navbar)
+||||||| parent of a94595c (changed navbar)
+<script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const userMenu = document.getElementById("userMenu");
+        const dropdownToggle = userMenu.querySelector(".dropdown-toggle");
+
+        dropdownToggle.addEventListener("click", function(e) {
+          e.preventDefault(); // Prevent default link behavior
+          userMenu.classList.toggle("open"); // Toggle the open class to show/hide the dropdown
+        });
+      });
+    </script>
+=======
+>>>>>>> a94595c (changed navbar)
 </html>

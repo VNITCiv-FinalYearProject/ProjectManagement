@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Progress</title>
     <link rel="stylesheet" href="/css/progress.css" />
-    <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
-    <%- include('./navbar.ejs') %>
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project">Projects</a></li>
+        <li><a href="#tasks">Notifications</a></li>
+        <li><a href="#reports">About</a></li>
+      </ul>
+    </nav>
 
     <div class="container">
       <h1>Project Progress for : <%= project.title %></h1>
@@ -76,16 +82,6 @@
 
     <script>
       document.getElementById("progressBar").style.width = "<%= percent %>%";
-      
-      document.addEventListener("DOMContentLoaded", function() {
-        const userMenu = document.getElementById("userMenu");
-        const dropdownToggle = userMenu.querySelector(".dropdown-toggle");
-
-        dropdownToggle.addEventListener("click", function(e) {
-          e.preventDefault(); // Prevent default link behavior
-          userMenu.classList.toggle("open"); // Toggle the open class to show/hide the dropdown
-        });
-      });
     </script>
   </body>
 </html>

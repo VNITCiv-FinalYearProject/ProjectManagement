@@ -15,9 +15,9 @@
     <title>Construction Management</title>
 >>>>>>> 95aade6 (uniform ui-black navs,btns,contrast)
     <link rel="stylesheet" href="/css/project_details.css" />
-    <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <%- include('partials/navbar') %>
@@ -76,6 +76,25 @@
 =======
     <%- include('./navbar.ejs') %>
 >>>>>>> 5a8fe4a (changed navbar)
+||||||| parent of a94595c (changed navbar)
+    <%- include('./navbar.ejs') %>
+=======
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project">Projects</a></li>
+        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) {
+        %>
+        <li>
+          <a href="/project/<%= project.id %>/editproject">Edit Project</a>
+        </li>
+        <% } %>
+        <li><a href="#reports">About</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+
+>>>>>>> a94595c (changed navbar)
     <div class="container">
       <div class="left-section">
         <ul>
@@ -221,15 +240,4 @@
     </div>
     <script src="/js/navbar.js"></script>
   </body>
-  <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const userMenu = document.getElementById("userMenu");
-        const dropdownToggle = userMenu.querySelector(".dropdown-toggle");
-
-        dropdownToggle.addEventListener("click", function(e) {
-          e.preventDefault(); // Prevent default link behavior
-          userMenu.classList.toggle("open"); // Toggle the open class to show/hide the dropdown
-        });
-      });
-    </script>
 </html>

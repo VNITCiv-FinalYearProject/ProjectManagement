@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="/css/navbar.css" />
     <!-- Link the projects-specific styles -->
     <link rel="stylesheet" href="/css/listofprojects.css" />
-    <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <!-- Include the Navbar Partial -->
@@ -78,6 +78,30 @@
 =======
     <%- include('./navbar.ejs') %>
 >>>>>>> 5a8fe4a (changed navbar)
+||||||| parent of a94595c (changed navbar)
+    <%- include('./navbar.ejs') %>
+=======
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) {
+        %>
+        <li><a href="/project/addproject">Add Project</a></li>
+        <% } %>
+        <li><a href="#tasks">Notifications</a></li>
+        <li><a href="#reports">About</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+      <div class="user-role">
+        Logged in as:
+        <strong
+          ><%= (user && user.role) ? user.role.charAt(0).toUpperCase() +
+          user.role.slice(1) : "Guest" %></strong
+        >
+      </div>
+    </nav>
+
+>>>>>>> a94595c (changed navbar)
     <div class="main-content">
       <div class="container">
 <<<<<<< HEAD
@@ -175,15 +199,7 @@
 =======
 
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const userMenu = document.getElementById("userMenu");
-        const dropdownToggle = userMenu.querySelector(".dropdown-toggle");
-
-        dropdownToggle.addEventListener("click", function(e) {
-          e.preventDefault(); // Prevent default link behavior
-          userMenu.classList.toggle("open"); // Toggle the open class to show/hide the dropdown
-        });
-      });
+      // Additional JavaScript can go here if needed
     </script>
 >>>>>>> 5a8fe4a (changed navbar)
   </body>
