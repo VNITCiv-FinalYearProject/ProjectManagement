@@ -55,6 +55,7 @@ th {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* Navbar styling */
 .navbar {
@@ -94,6 +95,31 @@ th {
   
 
 
+||||||| parent of 5a8fe4a (changed navbar)
+/* Navbar styling */
+.navbar {
+    background-color: #141415; /* Dark blue color */
+    padding: 15px 0;
+    text-align: center;
+}
+
+.navbar-container {
+    display: inline-block;
+}
+
+.navbar-brand, .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 15px;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    text-decoration: underline;
+}
+
+=======
+>>>>>>> 5a8fe4a (changed navbar)
 /* Footer styling */
 .footer {
     background-color: black;

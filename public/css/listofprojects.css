@@ -210,6 +210,7 @@ h1 {
 }
 
 @media (max-width: 768px) {
+<<<<<<< HEAD
   nav ul {
     flex-direction: column;
     align-items: center;
@@ -220,6 +221,18 @@ h1 {
   }
 
 >>>>>>> temp2
+||||||| parent of 5a8fe4a (changed navbar)
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  nav ul li {
+    margin-bottom: 0.5rem;
+  }
+
+=======
+>>>>>>> 5a8fe4a (changed navbar)
   .project-card {
     flex: 1 1 100%;
   }
