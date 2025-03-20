@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Navbar Container */
 nav {
   background: black !important;
@@ -204,3 +205,124 @@ nav {
 =======
 }
 >>>>>>> temp2
+||||||| parent of ad2f7cd (changed navbar)
+=======
+/* Dark Navigation */
+nav {
+  background: black !important;
+  padding: 1rem 2.5rem;
+  box-shadow: var(--shadow-medium);
+  display: flex;
+  align-items: center;
+  position: fix;
+  top: 0;
+  z-index: 1000;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: transform var(--transition-speed) ease;
+  flex: 0 0 auto;
+}
+
+.brand:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--secondary-color);
+  transition: all var(--transition-speed) ease;
+  transform: translateX(-50%);
+}
+
+.nav-links li a:hover::after {
+  width: 80%;
+}
+
+/* Dark User Menu */
+.user-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.dropdown-toggle img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+.dropdown-toggle img:hover {
+  transform: scale(1.1);
+  border-color: var(--secondary-color);
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 130%;
+  background: lightblue;
+  border-radius: 12px;
+  box-shadow: var(--shadow-medium);
+  padding: 0.8rem 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-speed) ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu li a {
+  color: white;
+  padding: 0.8rem 1.5rem;
+  display: block;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(45, 136, 255, 0.1);
+  color: var(--secondary-color);
+  padding-left: 2rem;
+}
+
+.user-menu.open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+>>>>>>> ad2f7cd (changed navbar)
