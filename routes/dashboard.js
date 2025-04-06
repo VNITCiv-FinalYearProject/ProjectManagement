@@ -1,8 +1,4 @@
 const express = require("express");
-<<<<<<< HEAD
-=======
-const app = express();
->>>>>>> temp2
 const router = express.Router({ mergeParams: true });
 const authorize = require("../middleware/authorize");
 const Project = require("../model/projectSchema");
