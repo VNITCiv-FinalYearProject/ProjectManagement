@@ -60,13 +60,8 @@ app.use(authRoutes);
 app.use("/project", projectroutes);
 app.use("/project/:id/bill", billroutes);
 app.use("/project/:id/progress", progressroutes);
-<<<<<<< HEAD
 app.use("/project/:id/comment", commentroutes);
 app.use("/project/:id/document", documentRoutes);
-||||||| parent of b515b7c (added comments and included sr-manager process)
-=======
-app.use("/project/:id/comment", commentroutes);
->>>>>>> b515b7c (added comments and included sr-manager process)
 app.use(linkRoutes);
 app.use("/", adminRoutes);
 app.use("/dashboard", dashboardRoutes);

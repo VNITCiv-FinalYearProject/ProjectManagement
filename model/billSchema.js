@@ -6,13 +6,8 @@ const billSchema = new Schema({
     "bill_id": {type:Number},
     "date": {type:Date},
     "Bill_Name" : {type:String},
-<<<<<<< HEAD
     "status": {type:Boolean,default:false},
     "Comment" : {type : String,default:"Either approved or to be inspected by higher authority"},
-||||||| parent of 7ebcba1 (added auth for billing)
-=======
-    "status": {type:Boolean,default:false},
->>>>>>> 7ebcba1 (added auth for billing)
 
     "items": [
         {
@@ -25,22 +20,10 @@ const billSchema = new Schema({
         }
     ],
     "previous_amount" : Number,
-<<<<<<< HEAD
     "total_amount": {type:Number,required:true},
     user_name : {type : String, required : true},
     user_role : {type : String, required : true},
     
-||||||| parent of 7ebcba1 (added auth for billing)
-    "total_amount": {type:Number,required:true}
-=======
-    "total_amount": {type:Number,required:true},
-    "created_by" : [
-       { 
-        "name" : {type:String},
-        "role" : {type:String}
-       }
-    ]
->>>>>>> 7ebcba1 (added auth for billing)
 },
 {
     collection:"bill"
