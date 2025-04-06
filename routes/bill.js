@@ -59,8 +59,15 @@ router.post('/addbill',authorize(["engineer", "contractor", "admin"]), async (re
         
         const bill = new Bill(req.body.bill);
         
+<<<<<<< HEAD
         bill.user_name=req.user.name;
         bill.user_role=req.user.role ;
+=======
+        bill.created_by = { 
+            name:req.user.name, 
+            role:req.user.role 
+            };
+>>>>>>> temp2
         project.bills.push(bill);
         await bill.save();
         await project.save();
@@ -107,8 +114,12 @@ router.get('/:billId', async (req, res) => {
         res.render('viewbill', {
             project: project,
             bill: bill,
+<<<<<<< HEAD
             previousAmount:previousAmount,
             previous_date:previous_date,
+=======
+            previousAmount,
+>>>>>>> temp2
             user:req.user
         });
     } catch (error) {
@@ -132,8 +143,15 @@ router.put('/:billId',authorize(["contractor","senior-manager","manager", "admin
             { $set: req.body.bill }, // Update the bill data
             { new: true, runValidators: true } // Return the updated document
         );
+<<<<<<< HEAD
         updatedBill.user_name=req.user.name;
         updatedBill.user_role=req.user.role ;
+=======
+        updatedBill.created_by = { 
+            name:req.user.name, 
+            role:req.user.role 
+            };
+>>>>>>> temp2
 
         if (!updatedBill) {
             return res.status(404).send('Bill not found');

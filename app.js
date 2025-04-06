@@ -61,11 +61,17 @@ app.use("/project", projectroutes);
 app.use("/project/:id/bill", billroutes);
 app.use("/project/:id/progress", progressroutes);
 app.use("/project/:id/comment", commentroutes);
+<<<<<<< HEAD
 app.use("/project/:id/document", documentRoutes);
 app.use(linkRoutes);
 app.use("/", adminRoutes);
 app.use("/dashboard", dashboardRoutes);
 
+=======
+app.use(linkRoutes);
+app.use("/", adminRoutes);
+app.use("/dashboard", dashboardRoutes);
+>>>>>>> temp2
 app.use(session({
   secret: 'iamtheking',
   resave: false,

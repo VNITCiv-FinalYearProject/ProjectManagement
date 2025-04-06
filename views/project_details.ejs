@@ -3,24 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< HEAD
     <title>Project_details</title>
+=======
+    <title>Construction Management</title>
+>>>>>>> temp2
     <link rel="stylesheet" href="/css/project_details.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
+<<<<<<< HEAD
     <%- include('partials/navbar') %>
+=======
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project">Projects</a></li>
+        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) {
+        %>
+        <li>
+          <a href="/project/<%= project.id %>/editproject">Edit Project</a>
+        </li>
+        <% } %>
+        <li><a href="#reports">About</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+>>>>>>> temp2
 
     <div class="container">
       <div class="left-section">
         <ul>
           <li>
+<<<<<<< HEAD
             <a href="/project/<%- project.id %>/progress" target="_blank">Progress</a>
+=======
+            <a href="/drawings" target="_blank">Drawings</a>
+          </li>
+          <li>
+            <a href="/tender" target="_blank">Tender</a>
+>>>>>>> temp2
           </li>
           <li>
             <a href="/project/<%- project.id %>/bill" target="_blank">Bill</a>
           </li>
           <li>
+<<<<<<< HEAD
             <a href="/documents/<%= project._id %>" target="_blank">Documents</a>
+=======
+            <a href="/project/<%- project.id %>/progress" target="_blank"
+              >Progress</a
+            >
+>>>>>>> temp2
           </li>
           <li>
             <a href="/project/<%- project.id %>/comment">Comments</a>
@@ -52,7 +86,12 @@
 
     <div class="footer">
       <p>
+<<<<<<< HEAD
         &copy; <%= new Date().getFullYear() %> Construction Management. All rights reserved.
+=======
+        &copy; <%= new Date().getFullYear() %> Construction Management. All
+        rights reserved.
+>>>>>>> temp2
       </p>
     </div>
     <script src="/js/navbar.js"></script>

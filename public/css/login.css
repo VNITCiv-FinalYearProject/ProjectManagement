@@ -213,6 +213,7 @@ body {
   transform: translateY(-2px);
   box-shadow: var(--shadow-medium);
   background: #2472cc;
+<<<<<<< HEAD
 }
 
 .footer {
@@ -223,6 +224,8 @@ body {
   margin-top: auto;
   font-size: 0.9rem;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+=======
+>>>>>>> temp2
 }
 
 .auth-footer {

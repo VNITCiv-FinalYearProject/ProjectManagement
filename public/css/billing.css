@@ -54,6 +54,15 @@ th {
     background-color: #f4f4f4;
 }
 
+<<<<<<< HEAD
+=======
+/* Navbar styling */
+.navbar {
+    background-color: #141415; /* Dark blue color */
+    padding: 15px 0;
+    text-align: center;
+}
+>>>>>>> temp2
 
 .btn {
     display: inline-block;

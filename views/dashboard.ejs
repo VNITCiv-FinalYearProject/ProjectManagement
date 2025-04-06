@@ -9,8 +9,41 @@
      <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
+<<<<<<< HEAD
         <!-- Include the Navbar Partial -->
     <%- include('partials/navbar') %>
+=======
+    <nav>
+      <!-- Brand on the left -->
+      <a class="brand" href="/dashboard">Construction Management</a>
+
+      <!-- Centered Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/project">Projects</a></li>
+        <li><a href="#tasks">Notifications</a></li>
+        <li><a href="#reports">About</a></li>
+        <% if (user && user.role === "admin") { %>
+          <li><a href="/admin/roles">Roles</a></li>
+        <% } %>
+      </ul>
+
+      <!-- User Menu (Right Side) -->
+      <div class="user-menu" id="userMenu">
+        <div class="dropdown-toggle">
+          <img
+            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+            alt="User Avatar"
+          />
+        </div>
+        <ul class="dropdown-menu" id="userDropdownMenu">
+          <li type="none"><a>Hi, <%- user.name %>!</a></li>
+          <li type="none"><a>Logged in as: <%- user.role %> </a></li>
+          <li type="none"><a href="/logout">Log Out</a></li>
+        </ul>
+      </div>
+    </nav>
+>>>>>>> temp2
 
     <main>
       <h1>Welcome to the Construction Management Dashboard</h1>
@@ -22,16 +55,26 @@
           <a href="/project" class="stat-card">
             <h3>Ongoing Projects</h3>
             <p><%- ongoing %></p>
+<<<<<<< HEAD
           </a>
           <a href="/project" class="stat-card">
+=======
+          </div>
+          <div class="stat-card">
+>>>>>>> temp2
             <h3>Tasks Due Today</h3>
             <p>5</p>
           </a>
           <a href="/project" class="stat-card">
             <h3>Completed Projects</h3>
             <p><%- completed %></p>
+<<<<<<< HEAD
           </a>
           <a href="/project" class="stat-card">
+=======
+          </div>
+          <div class="stat-card">
+>>>>>>> temp2
             <h3>Upcoming Deadlines</h3>
             <p>6</p>
           </a>
@@ -54,6 +97,20 @@
     </footer>
 
     <!-- Minimal JavaScript for toggling the user dropdown -->
+<<<<<<< HEAD
     <script src="/js/navbar.js"></script>
+=======
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const userMenu = document.getElementById("userMenu");
+        const dropdownToggle = userMenu.querySelector(".dropdown-toggle");
+
+        dropdownToggle.addEventListener("click", function(e) {
+          e.preventDefault(); // Prevent default link behavior
+          userMenu.classList.toggle("open"); // Toggle the open class to show/hide the dropdown
+        });
+      });
+    </script>
+>>>>>>> temp2
   </body>
 </html>

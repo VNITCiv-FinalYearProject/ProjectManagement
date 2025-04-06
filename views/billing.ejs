@@ -8,7 +8,20 @@
     <link rel="stylesheet" href="/css/navbar.css" />
 </head>
 <body>
+<<<<<<< HEAD
     <%- include('partials/navbar') %>
+=======
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/dashboard" class="navbar-brand">Home</a>
+            <a href="/project" class="nav-link">Projects</a>
+            <a href="/notifications" class="nav-link">Notifications</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/logout" class="nav-link">Logout</a>
+        </div>
+    </nav>
+>>>>>>> temp2
 
     <div class="container">
         <h1>Displaying bill for : <%- project.title %></h1>
@@ -43,11 +56,19 @@
                                 <td><%= bill.Bill_Name %></td>
                                 <td><%= new Date(bill.date).toLocaleDateString('en-US') %></td>
                                 <td>
+<<<<<<< HEAD
                                     <a href="/project/<%= project._id %>/bill/<%= bill._id %>" class="btn view-link">View Bill</a>
                                     <% if(["contractor","admin","senior-manager","manager"].includes(user.role)) { %>
                                         <a href="/project/<%= project._id %>/bill/<%= bill._id %>/edit" class="btn edit-link">Edit Bill</a>
                                     <% } %>
                                 </td>                                
+=======
+                                    <a href="/project/<%= project._id %>/bill/<%= bill._id %>" class="view-link">View Bill</a>
+                                    <% if(["contractor","admin","senior-manager","manager"].includes(user.role)) { %>
+                                        <a href="/project/<%= project._id %>/bill/<%= bill._id %>/edit" class="edit-link">Edit Bill</a>
+                                    <% } %>
+                                </td>
+>>>>>>> temp2
                             </tr>
                         <% }) %>
                     </tbody>
