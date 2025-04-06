@@ -1,10 +1,4 @@
 const mongoose = require('mongoose')
-<<<<<<< HEAD
-=======
-const bill = require('./billSchema')
-const progress = require('./progressSchema');
-const comment = require('../model/commentSchema')
->>>>>>> temp2
 const { Schema } = mongoose
 
 const projectSchema = new Schema({
@@ -19,7 +13,6 @@ const projectSchema = new Schema({
   expectedDate: Date,
   // progress: {type : Number, min : 0,max : 100},
 
-<<<<<<< HEAD
   bills: [
     {
       type: Schema.Types.ObjectId,
@@ -45,26 +38,6 @@ const projectSchema = new Schema({
     }
   ]
   
-=======
-    bills : [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Bill'
-      }
-    ],
-    progresses : [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Progress'
-      }
-    ],
-    comments : [
-      {
-        type : Schema.Types.ObjectId,
-        ref : 'Comment'
-      }
-    ]
->>>>>>> temp2
 },
 
   {
