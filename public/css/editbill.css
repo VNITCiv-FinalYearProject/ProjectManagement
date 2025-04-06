@@ -60,6 +60,19 @@ h1 {
     background-color: #f9f9f9;
 }
 
+.form-field textarea {
+  width: 100%;
+  padding: 0.8em;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  resize: vertical;
+  min-height: 100px; /* Adjust height if needed */
+  font-family: inherit;
+  font-size: 1em;
+  color: #34495e;
+}
+
 .light-input {
     color: #8e8e8e; /* Lighter grey for text to appear subdued but editable */
 }

@@ -7,6 +7,7 @@ const billSchema = new Schema({
     "date": {type:Date},
     "Bill_Name" : {type:String},
     "status": {type:Boolean,default:false},
+    "Comment" : {type : String,default:"Either approved or to be inspected by higher authority"},
 
     "items": [
         {
@@ -20,12 +21,9 @@ const billSchema = new Schema({
     ],
     "previous_amount" : Number,
     "total_amount": {type:Number,required:true},
-    "created_by" : [
-       { 
-        "name" : {type:String},
-        "role" : {type:String}
-       }
-    ]
+    user_name : {type : String, required : true},
+    user_role : {type : String, required : true},
+    
 },
 {
     collection:"bill"

@@ -1,27 +1,20 @@
 const express = require("express");
-const router = express.Router({ mergeParams: true });
-const mongoose = require("mongoose");
-const Project = mongoose.model("Project");
+const router = express.Router({mergeParams:true});
+const Project = require("../model/projectSchema");
+const Document = require('../model/documentSchema')
+const authorize = require('../middleware/authorize')
 
-// Middleware to check if user is authenticated
-const isLoggedIn = (req, res, next) => {
-  if (!req.user) {
-    return res.status(401).redirect("/login");
-  }
-  next();
-};
-
-// Middleware to check if user has permission
-const hasPermission = (req, res, next) => {
-  const allowedRoles = ["engineer", "contractor", "senior-manager", "manager", "admin"];
-  if (!req.user || !allowedRoles.includes(req.user.role)) {
-    return res.status(403).send("You don't have permission to perform this action");
-  }
-  next();
-};
+router.get('/',authorize(["engineer", "contractor", "manager", "senior-manager", "admin"]),async(req,res)=>{
+    const projectId = req.params.id
+    const project = await Project.findById(projectId)
+    if (!project) {
+        return res.status(404).json({error:"Project not found"})
+    }
+    res.render('document',{project})
+})
 
 // Route to upload a drawing
-router.post("/drawing/upload", isLoggedIn, hasPermission, async (req, res) => {
+router.post("/drawing/upload", authorize(["engineer", "contractor", "manager", "senior-manager", "admin"]), async (req, res) => {
   try {
     const { title, link } = req.body;
     const projectId = req.params.id;
@@ -60,7 +53,7 @@ router.post("/drawing/upload", isLoggedIn, hasPermission, async (req, res) => {
 });
 
 // Route to upload a tender document
-router.post("/tender/upload", isLoggedIn, hasPermission, async (req, res) => {
+router.post("/tender/upload", authorize(["manager", "senior-manager", "admin"]), async (req, res) => {
   try {
     const { title, link } = req.body;
     const projectId = req.params.id;
