@@ -9,33 +9,17 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="/css/viewprog_task.css" />
-<<<<<<< HEAD
     <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
     <%- include('partials/navbar') %>
     
-=======
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="/dashboard">Home</a></li>
-        <li><a href="/project">Projects</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </nav>
->>>>>>> temp2
 
     <div class="container">
       <h1>Progress Details</h1>
       <div class="progress-card">
-<<<<<<< HEAD
         <!-- Back button styled and positioned at the top left inside the card -->
         <a href="/project/<%= project.id %>/progress" class="btn-back">Back</a>
-=======
-        <a href="/project/<%= project.id %>/progress">Back</a>
->>>>>>> temp2
         <h3>Sub-task of Progress: <%= progress.task %></h3>
         <p>
           <strong>Initial Date:</strong> 
@@ -47,11 +31,7 @@
         </p>
         <p>
           <strong>Percentage Completed:</strong> 
-<<<<<<< HEAD
           <%= progress.percentage %>% 
-=======
-          <%= progress.percentage %>%
->>>>>>> temp2
         </p>
         <p>
           <strong>Status:</strong> 
@@ -60,7 +40,6 @@
         <p><strong>Description:</strong> <%= progress.description %></p>
 
         <% if (progress.image && progress.image.length > 0) { %>
-<<<<<<< HEAD
           <div
             id="progressImageCarousel"
             class="carousel slide"
@@ -80,27 +59,6 @@
           </div>
         <% } else { %>
           <p>No images available for this progress.</p>
-=======
-        <div
-          id="progressImageCarousel"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <% progress.image.forEach((img, index) => { %>
-            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-              <img
-                src="<%= img.url %>"
-                class="d-block w-100 progress-image"
-                alt="<%= img.fileName %>"
-              />
-            </div>
-            <% }); %>
-          </div>
-        </div>
-        <% } else { %>
-        <p>No images available for this progress.</p>
->>>>>>> temp2
         <% } %>
       </div>
     </div>

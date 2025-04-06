@@ -10,36 +10,11 @@
     <link rel="stylesheet" href="/css/listofprojects.css" />
   </head>
   <body>
-<<<<<<< HEAD
     <!-- Include the Navbar Partial -->
     <%- include('partials/navbar') %>
 
     <div class="main-content">
       <div class="projects-container">
-=======
-    <nav>
-      <ul>
-        <li><a href="/dashboard">Home</a></li>
-        <% if (user && ["manager", "contractor", "admin"].includes(user.role)) {
-        %>
-        <li><a href="/project/addproject">Add Project</a></li>
-        <% } %>
-        <li><a href="#tasks">Notifications</a></li>
-        <li><a href="#reports">About</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-      <div class="user-role">
-        Logged in as:
-        <strong
-          ><%= (user && user.role) ? user.role.charAt(0).toUpperCase() +
-          user.role.slice(1) : "Guest" %></strong
-        >
-      </div>
-    </nav>
-
-    <div class="main-content">
-      <div class="container">
->>>>>>> temp2
         <h1>Projects</h1>
         <div class="project-grid" id="projectGrid">
           <% for(let project of projects) { %>
@@ -51,7 +26,6 @@
             <div class="project-info">
               Supervisor: <%- project.supervisor %>
             </div>
-<<<<<<< HEAD
             <div class="project-info">
               Company: <%- project.company %>
             </div>
@@ -65,17 +39,6 @@
         </div>
         <% } %>
       </div>
-=======
-            <div class="project-info">Company: <%- project.company %></div>
-          </div>
-          <% } %>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <p>&copy; 2024 Construction Management. All rights reserved.</p>
->>>>>>> temp2
     </div>
 
     <div class="footer">

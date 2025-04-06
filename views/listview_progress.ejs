@@ -5,25 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Progress</title>
     <link rel="stylesheet" href="/css/listview_progress.css" />
-<<<<<<< HEAD
     <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
     
     <%- include('partials/navbar') %>
-=======
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="/dashboard">Home</a></li>
-        <li><a href="/project">Projects</a></li>
-        <li><a href="#tasks">Notifications</a></li>
-        <li><a href="#reports">About</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </nav>
->>>>>>> temp2
 
     <div class="container">
       <h1>Project Progress for : <%= project.title %></h1>
@@ -71,20 +57,11 @@
                             </td>
                             <td><%- prog.final_date %></td> <!-- Expected Completion Date -->
                             <td>
-<<<<<<< HEAD
                               <a href="/project/<%= project._id %>/progress/<%= prog._id %>/viewprogress" class="btn btn-view">View</a>
                               <% if(user && ["engineer","contractor","admin"].includes(user.role)) { %>
                                 <a href="/project/<%= project._id %>/progress/<%= prog._id %>/editprogress" class="btn btn-edit">Edit</a>
                               <% } %>
                             </td>                            
-=======
-                                <a href="/project/<%= project._id %>/progress/<%= prog._id %>/viewprogress">View</a>
-                                <% if(user && ["engineer","contractor","admin"].includes(user.role)) { %>
-                                        <a href="/project/<%= project._id %>/progress/<%= prog._id %>/editprogress">Edit</a>
-                                    </a>           
-                                <% } %>
-                            </td>
->>>>>>> temp2
                         </tr>
                     <% }) %>
                 <% } else { %>
@@ -109,9 +86,6 @@
     <script>
       document.getElementById("progressBar").style.width = "<%= percent %>%";
     </script>
-<<<<<<< HEAD
     <script src="/js/navbar.js"></script>
-=======
->>>>>>> temp2
   </body>
 </html>
