@@ -5,17 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Comment</title>
     <link rel="stylesheet" href="/css/addcomment.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/dashboard">Home</a></li>
-        <li><a href="/project">Projects</a></li>
-        <li><a href="#tasks">Notifications</a></li>
-        <li><a href="#reports">About</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </nav>
+    <%- include('partials/navbar') %>
     <div class="container">
       <h1>Add Comment</h1>
       <form action="/project/<%= project.id %>/comment/addcomment" method="POST">
