@@ -17,8 +17,14 @@ router.get('/', async (req, res) => {
             return res.status(404).send('Project not found');
         }
 
+        // Find the most recent bill before the current one for the same project
+        const previousBill = await Bill.findOne({
+            date: { $lt: Bill.date }, // Only consider bills before the current one
+            _id: { $in: project.bills } // Only look within the bills of this project
+        }).sort({ date: -1 }); // Sort to get the latest one before the current bill
+
         console.log(`Displaying billing page for project id: ${projectId}`);
-        res.render('billing', { project });
+        res.render('billing', { project,previousBill });
     } catch (error) {
         console.error(error);
         res.status(500).send('Error fetching project');
@@ -53,10 +59,8 @@ router.post('/addbill',authorize(["engineer", "contractor", "admin"]), async (re
         
         const bill = new Bill(req.body.bill);
         
-        bill.created_by = { 
-            name:req.user.name, 
-            role:req.user.role 
-            };
+        bill.user_name=req.user.name;
+        bill.user_role=req.user.role ;
         project.bills.push(bill);
         await bill.save();
         await project.save();
@@ -85,7 +89,6 @@ router.get('/:billId', async (req, res) => {
         if (!bill) {
             return res.status(404).send('Bill not found');
         }
-
         // Find the most recent bill before the current one for the same project
         const previousBill = await Bill.findOne({
             _id: { $ne: billId }, // Exclude the current bill
@@ -93,6 +96,7 @@ router.get('/:billId', async (req, res) => {
             _id: { $in: project.bills } // Only look within the bills of this project
         }).sort({ date: -1 }); // Sort to get the latest one before the current bill
 
+        const previous_date = bill.date;
         // Determine the previous amount or default to 0
         const previousAmount = previousBill ? previousBill.total_amount : 0;
 
@@ -103,7 +107,8 @@ router.get('/:billId', async (req, res) => {
         res.render('viewbill', {
             project: project,
             bill: bill,
-            previousAmount,
+            previousAmount:previousAmount,
+            previous_date:previous_date,
             user:req.user
         });
     } catch (error) {
@@ -120,16 +125,15 @@ router.put('/:billId',authorize(["contractor","senior-manager","manager", "admin
         if (!project) {
             return res.status(404).send('Project not found');
         }
+        
 
         const updatedBill = await Bill.findByIdAndUpdate(
             billId,
             { $set: req.body.bill }, // Update the bill data
             { new: true, runValidators: true } // Return the updated document
         );
-        updatedBill.created_by = { 
-            name:req.user.name, 
-            role:req.user.role 
-            };
+        updatedBill.user_name=req.user.name;
+        updatedBill.user_role=req.user.role ;
 
         if (!updatedBill) {
             return res.status(404).send('Bill not found');

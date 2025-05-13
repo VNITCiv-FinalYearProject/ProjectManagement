@@ -36,7 +36,6 @@
             id="billId"
             name="bill[bill_id]"
             value="<%= bill.bill_id %>"
-            readonly
           />
         </div>
 
@@ -46,18 +45,30 @@
             type="date"
             id="billDate"
             name="bill[date]"
-            value="<%= new Date(bill.date).toISOString().split('T')[0] %>"
+            value="<%= bill.date ? new Date(bill.date).toISOString().split('T')[0] : '' %>"
             required
           />
         </div>
 
-      <% if(user && ["manager","admin"].includes(user.role)){ %>
+
+      <% if(user && ["manager","senior manager","admin"].includes(user.role)){ %>
         <div class="form-field">
           <label for="billStatus">Bill Status:</label>
           <select id="billStatus" name="bill[status]" required>
-            <option value="true" <%= bill.status ? 'selected' : '' %>>True</option>
-            <option value="false" <%= !bill.status ? 'selected' : '' %>>False</option>
+            <option value="true" <%= bill.status ? 'selected' : '' %>>Approve</option>
+            <option value="false" <%= !bill.status ? 'selected' : '' %>>Reject</option>
           </select>
+        </div>
+      <% } %>
+
+      <% if(user && ["manager","senior manager", "admin"].includes(user.role)){ %>
+        <div class="form-field">
+          <label for="billComment">Comment:</label>
+          <textarea
+            id="billComment"
+            name="bill[Comment]"
+            placeholder="Add your comment here..."
+          ></textarea>
         </div>
       <% } %>
 

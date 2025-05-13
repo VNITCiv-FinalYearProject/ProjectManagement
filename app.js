@@ -61,6 +61,7 @@ app.use("/project", projectroutes);
 app.use("/project/:id/bill", billroutes);
 app.use("/project/:id/progress", progressroutes);
 app.use("/project/:id/comment", commentroutes);
+app.use("/project/:id/document", documentRoutes);
 app.use(linkRoutes);
 app.use("/", adminRoutes);
 app.use("/dashboard", dashboardRoutes);
@@ -72,7 +73,6 @@ app.use(session({
   cookie: { secure: false } // Set to true if using HTTPS
 }));
 
-app.use("/project/:id", documentRoutes);
 
 const verifyToken = (req, res, next) => {
   if (!req.user) {

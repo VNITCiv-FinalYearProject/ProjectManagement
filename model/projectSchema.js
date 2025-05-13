@@ -1,7 +1,4 @@
 const mongoose = require('mongoose')
-const bill = require('./billSchema')
-const progress = require('./progressSchema');
-const comment = require('../model/commentSchema')
 const { Schema } = mongoose
 
 const projectSchema = new Schema({
@@ -34,29 +31,13 @@ const projectSchema = new Schema({
       ref: 'Comment'
     }
   ],
-
-  // Add these new fields for document storage
-  drawings: [
+  documents : [
     {
-      title: String,
-      link: String, // Google Drive link
-      date: { type: Date, default: Date.now },
-      user_id: Schema.Types.ObjectId,
-      user_name: String,
-      image: String // thumbnail path
-    }
-  ],
-
-  tenders: [
-    {
-      title: String,
-      link: String, // Google Drive link
-      date: { type: Date, default: Date.now },
-      user_id: Schema.Types.ObjectId,
-      user_name: String,
-      image: String // thumbnail path
+      type:Schema.Types.ObjectId,
+      ref: 'Document'
     }
   ]
+  
 },
 
   {

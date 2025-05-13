@@ -1,6 +1,4 @@
-// routes/dashboard.js
 const express = require("express");
-const app = express();
 const router = express.Router({ mergeParams: true });
 const authorize = require("../middleware/authorize");
 const Project = require("../model/projectSchema");

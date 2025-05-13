@@ -29,7 +29,6 @@ body {
   color: var(--text-dark);
 }
 
-
 .main-content {
   flex: 1;
   display: flex;
